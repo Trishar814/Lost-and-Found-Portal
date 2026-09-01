@@ -4,68 +4,56 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Lost & Found | Khaitan Public School</title>
+<title>Khaitan Public School | Lost & Found</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
 
 <style>
-/* =========================================================
-   KPS LOST & FOUND — PREMIUM VERSION
-   ========================================================= */
 
-*,
-*::before,
-*::after {
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root {
+    --teal: #0e8388;
+    --teal-dark: #075e68;
+    --green: #21b897;
+    --green-dark: #168d75;
+
+    --bg: #f3f8f8;
+    --white: #ffffff;
+
+    --text: #172426;
+    --soft: #536366;
+    --muted: #849497;
+
+    --border: #dbe6e7;
+
+    --lost: #d88916;
+    --found: #087681;
+    --claimed: #3b7a36;
+    --returned: #6947a8;
+
+    --shadow:
+        0 10px 35px rgba(14, 75, 78, .08);
+
+    --shadow-hover:
+        0 18px 45px rgba(14, 75, 78, .14);
+
+    --radius: 15px;
+}
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
-
-:root {
-    --primary: #21b897;
-    --primary-dark: #159879;
-    --primary-light: #dff8f1;
-
-    --teal: #0e8388;
-    --teal-dark: #075b67;
-    --teal-deep: #073f49;
-
-    --navy: #102f35;
-    --dark: #172a2f;
-    --text: #1b3035;
-    --text-soft: #5c7075;
-    --text-muted: #829398;
-
-    --background: #f4f8f8;
-    --white: #ffffff;
-    --border: #dce8e9;
-
-    --lost: #d88919;
-    --lost-bg: #fff5e4;
-
-    --found: #087c8b;
-    --found-bg: #e7f7f8;
-
-    --claimed: #47733e;
-    --claimed-bg: #edf5eb;
-
-    --returned: #6846a3;
-    --returned-bg: #f2edfb;
-
-    --danger: #d9534f;
-    --danger-bg: #fff0ef;
-
-    --shadow-sm: 0 4px 16px rgba(14, 60, 66, .06);
-    --shadow: 0 12px 35px rgba(14, 60, 66, .10);
-    --shadow-lg: 0 24px 70px rgba(14, 60, 66, .18);
-
-    --radius-sm: 10px;
-    --radius: 16px;
-    --radius-lg: 24px;
-
-    --transition: .22s ease;
 }
 
 html {
@@ -74,1457 +62,1254 @@ html {
 
 body {
     font-family: "Inter", sans-serif;
-    background:
-        radial-gradient(circle at 10% 0%, rgba(33,184,151,.08), transparent 25%),
-        radial-gradient(circle at 90% 10%, rgba(14,131,136,.08), transparent 25%),
-        var(--background);
+    background: var(--bg);
     color: var(--text);
-    min-height: 100vh;
 }
 
 /* =========================================================
-   TOP BAR
-   ========================================================= */
+   AUTH SCREEN
+========================================================= */
+
+#authScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(33,184,151,.18),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(15,113,135,.18),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #edfafa,
+            #f8fcfc
+        );
+}
+
+.auth-card {
+    width: min(450px, calc(100% - 30px));
+
+    background: rgba(255,255,255,.97);
+
+    border: 1px solid #ffffff;
+
+    border-radius: 28px;
+
+    padding: 42px 35px;
+
+    text-align: center;
+
+    box-shadow:
+        0 30px 80px rgba(15,80,85,.16),
+        0 5px 20px rgba(0,0,0,.04);
+
+    animation: authIn .5s ease;
+}
+
+@keyframes authIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+.auth-logo {
+    width: 82px;
+    height: 58px;
+    margin: auto;
+}
+
+.auth-logo svg {
+    width: 100%;
+    height: 100%;
+}
+
+.auth-school {
+    font-family: "Montserrat", sans-serif;
+
+    font-size: 25px;
+
+    letter-spacing: 2px;
+
+    font-weight: 800;
+
+    margin-top: 5px;
+}
+
+.auth-tagline {
+    color: var(--teal);
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    font-weight: 700;
+
+    margin-top: 3px;
+}
+
+.auth-card h1 {
+    font-size: 25px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.auth-card p {
+    color: var(--soft);
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    margin-bottom: 24px;
+}
+
+.microsoft-btn {
+    width: 100%;
+
+    border: none;
+
+    background: #2563eb;
+
+    color: white;
+
+    padding: 14px 18px;
+
+    border-radius: 12px;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    transition: .2s;
+}
+
+.microsoft-btn:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 22px rgba(37,99,235,.22);
+}
+
+.microsoft-icon {
+    width: 20px;
+    height: 20px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+
+    gap: 2px;
+}
+
+.microsoft-icon span:nth-child(1) {
+    background: #f25022;
+}
+
+.microsoft-icon span:nth-child(2) {
+    background: #7fba00;
+}
+
+.microsoft-icon span:nth-child(3) {
+    background: #00a4ef;
+}
+
+.microsoft-icon span:nth-child(4) {
+    background: #ffb900;
+}
+
+.auth-note {
+    margin-top: 17px !important;
+
+    font-size: 11px !important;
+
+    color: var(--muted) !important;
+}
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+#loadingScreen {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9998;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-direction: column;
+
+    gap: 15px;
+
+    background: var(--bg);
+}
+
+.loader {
+    width: 43px;
+    height: 43px;
+
+    border-radius: 50%;
+
+    border: 4px solid #d7eeee;
+
+    border-top-color: var(--green);
+
+    animation: spin .8s linear infinite;
+}
+
+@keyframes spin {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+/* =========================================================
+   APP
+========================================================= */
+
+#app {
+    display: none;
+}
 
 .top-accent {
-    height: 5px;
-    background: linear-gradient(
-        90deg,
-        var(--teal),
-        var(--primary),
-        #46cdb5,
-        var(--teal)
-    );
+    height: 6px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--teal),
+            var(--green),
+            var(--teal-dark)
+        );
 }
 
 /* =========================================================
    HEADER
-   ========================================================= */
+========================================================= */
 
 header {
+    background: rgba(255,255,255,.95);
+
+    backdrop-filter: blur(15px);
+
     position: sticky;
+
     top: 0;
+
     z-index: 100;
-    background: rgba(255,255,255,.90);
-    backdrop-filter: blur(18px);
-    border-bottom: 1px solid rgba(220,232,233,.8);
+
+    box-shadow:
+        0 3px 18px rgba(0,0,0,.07);
 }
 
 .header-inner {
     max-width: 1200px;
+
     margin: auto;
-    min-height: 76px;
-    padding: 12px 24px;
+
+    min-height: 72px;
+
+    padding: 11px 24px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
     gap: 20px;
 }
 
 .logo-group {
     display: flex;
+
     align-items: center;
+
     gap: 13px;
 }
 
-.logo-box {
-    width: 52px;
-    height: 52px;
-
-    border-radius: 15px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: linear-gradient(
-        145deg,
-        var(--primary-light),
-        #ffffff
-    );
-
-    border: 1px solid #cceee5;
-    box-shadow: var(--shadow-sm);
+.logo-mountains {
+    width: 48px;
+    height: 38px;
 }
 
-.logo-box svg {
-    width: 42px;
-    height: 35px;
-}
-
-.logo-text {
-    display: flex;
-    flex-direction: column;
+.logo-mountains svg {
+    width: 100%;
+    height: 100%;
 }
 
 .school-name {
     font-family: "Montserrat", sans-serif;
-    font-weight: 800;
-    letter-spacing: .10em;
+
     font-size: 18px;
-    color: var(--dark);
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
 }
 
 .school-tagline {
-    color: var(--teal);
     font-size: 8px;
-    letter-spacing: .23em;
-    font-weight: 800;
-    margin-top: 3px;
+
+    letter-spacing: 2.4px;
+
+    color: var(--teal);
+
+    font-weight: 700;
 }
 
 .portal-label {
-    margin-left: 8px;
-    padding-left: 12px;
-    border-left: 2px solid var(--primary);
+    margin-left: 14px;
 
-    color: var(--text-soft);
-    font-size: 11px;
+    padding-left: 14px;
+
+    border-left: 1px solid var(--border);
+
+    font-size: 13px;
+
+    color: var(--soft);
+
     font-weight: 600;
-    letter-spacing: .07em;
-    text-transform: uppercase;
 }
 
-.creators {
+.user-area {
     display: flex;
+
     align-items: center;
-    gap: 9px;
-    color: var(--text-soft);
-    font-size: 12px;
+
+    gap: 12px;
 }
 
-.creator-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--primary);
-    box-shadow: 0 0 0 5px rgba(33,184,151,.12);
+.user-info {
+    text-align: right;
+}
+
+.user-name {
+    font-size: 13px;
+
+    font-weight: 800;
+}
+
+.user-email {
+    max-width: 230px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    font-size: 11px;
+
+    color: var(--muted);
+}
+
+.logout-btn {
+    border: 1px solid var(--border);
+
+    background: white;
+
+    color: var(--soft);
+
+    padding: 8px 13px;
+
+    border-radius: 9px;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.logout-btn:hover {
+    border-color: var(--green);
+
+    color: var(--green-dark);
 }
 
 /* =========================================================
    HERO
-   ========================================================= */
+========================================================= */
 
 .hero {
-    position: relative;
-    overflow: hidden;
+    text-align: center;
+
+    padding: 60px 20px 43px;
 
     background:
-        radial-gradient(circle at 20% 10%, rgba(255,255,255,.13), transparent 25%),
-        radial-gradient(circle at 80% 80%, rgba(33,184,151,.20), transparent 30%),
-        linear-gradient(135deg, #08777e, #075667 55%, #063f49);
-
-    padding: 70px 20px 45px;
-    color: white;
-}
-
-.hero::before,
-.hero::after {
-    content: "";
-    position: absolute;
-    border-radius: 50%;
-    pointer-events: none;
-}
-
-.hero::before {
-    width: 300px;
-    height: 300px;
-    right: -130px;
-    top: -130px;
-    border: 1px solid rgba(255,255,255,.12);
-    box-shadow:
-        0 0 0 40px rgba(255,255,255,.025),
-        0 0 0 80px rgba(255,255,255,.018);
-}
-
-.hero::after {
-    width: 220px;
-    height: 220px;
-    left: -120px;
-    bottom: -140px;
-    background: rgba(33,184,151,.10);
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 850px;
-    margin: auto;
-    text-align: center;
-}
-
-.hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-
-    padding: 7px 13px;
-    border-radius: 999px;
-
-    background: rgba(255,255,255,.10);
-    border: 1px solid rgba(255,255,255,.18);
-
-    color: rgba(255,255,255,.92);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-
-    margin-bottom: 18px;
-}
-
-.live-dot {
-    width: 7px;
-    height: 7px;
-    background: #68f0cb;
-    border-radius: 50%;
-    box-shadow: 0 0 0 5px rgba(104,240,203,.10);
-    animation: pulse 1.8s infinite;
-}
-
-@keyframes pulse {
-    0%,100% {
-        box-shadow: 0 0 0 4px rgba(104,240,203,.12);
-    }
-    50% {
-        box-shadow: 0 0 0 8px rgba(104,240,203,.02);
-    }
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(33,184,151,.17),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #eaf9f7,
+            #f5fbfb
+        );
 }
 
 .hero h1 {
     font-family: "Montserrat", sans-serif;
-    font-size: clamp(34px, 6vw, 62px);
-    line-height: 1.05;
-    font-weight: 800;
-    letter-spacing: -.035em;
+
+    font-size: clamp(32px,5vw,54px);
+
+    line-height: 1.08;
+
+    letter-spacing: -1.5px;
 }
 
 .hero h1 span {
-    color: #55e0c2;
+    color: var(--green);
 }
 
 .hero-sub {
-    max-width: 620px;
-    margin: 18px auto 30px;
+    max-width: 670px;
 
-    color: rgba(255,255,255,.78);
+    margin: 17px auto 30px;
+
+    color: var(--soft);
+
     font-size: 15px;
-    line-height: 1.75;
+
+    line-height: 1.7;
 }
 
 /* =========================================================
-   HERO ACTIONS
-   ========================================================= */
+   STATS
+========================================================= */
 
-.hero-actions {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 35px;
-}
+.stats-bar {
+    max-width: 850px;
 
-.hero-btn {
-    border: none;
-    padding: 12px 19px;
-    border-radius: 12px;
-
-    font-family: inherit;
-    font-size: 13px;
-    font-weight: 700;
-
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.hero-btn-primary {
-    color: #063f49;
-    background: #ffffff;
-}
-
-.hero-btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(0,0,0,.16);
-}
-
-.hero-btn-secondary {
-    color: white;
-    background: rgba(255,255,255,.09);
-    border: 1px solid rgba(255,255,255,.20);
-}
-
-.hero-btn-secondary:hover {
-    background: rgba(255,255,255,.15);
-}
-
-/* =========================================================
-   STATISTICS
-   ========================================================= */
-
-.stats {
-    max-width: 800px;
     margin: auto;
 
     display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 10px;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap: 12px;
 }
 
-.stat-card {
-    padding: 17px 10px;
+.stat-pill {
+    background: rgba(255,255,255,.92);
 
-    background: rgba(255,255,255,.09);
-    border: 1px solid rgba(255,255,255,.15);
     border-radius: 15px;
 
-    backdrop-filter: blur(10px);
+    padding: 16px 10px;
+
+    box-shadow:
+        0 5px 20px rgba(15,80,85,.06);
 }
 
-.stat-number {
-    font-family: "Montserrat", sans-serif;
-    font-size: 26px;
+.stat-num {
+    font-size: 25px;
+
     font-weight: 800;
+
+    color: var(--teal-dark);
 }
 
 .stat-label {
+    font-size: 11px;
+
+    color: var(--muted);
+
     margin-top: 4px;
-
-    font-size: 10px;
-    color: rgba(255,255,255,.65);
-
-    text-transform: uppercase;
-    letter-spacing: .07em;
 }
 
 /* =========================================================
    MAIN
-   ========================================================= */
+========================================================= */
 
-.main {
+.main-wrap {
     max-width: 1120px;
-    margin: auto;
-    padding: 40px 20px 80px;
+
+    margin: 35px auto 70px;
+
+    padding: 0 20px;
 }
 
 /* =========================================================
-   NAVIGATION
-   ========================================================= */
+   TABS
+========================================================= */
 
-.navigation {
+.tabs {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
+
+    gap: 8px;
+
+    background: white;
+
+    padding: 7px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 15px;
+
+    box-shadow: var(--shadow);
 
     margin-bottom: 25px;
 }
 
-.tabs {
-    display: flex;
-    gap: 5px;
-
-    padding: 5px;
-
-    background: rgba(255,255,255,.90);
-    border: 1px solid var(--border);
-    border-radius: 15px;
-
-    box-shadow: var(--shadow-sm);
-}
-
 .tab {
+    flex: 1;
+
     border: none;
+
     background: transparent;
 
-    color: var(--text-soft);
+    padding: 13px 15px;
 
-    padding: 10px 16px;
-    border-radius: 11px;
+    border-radius: 10px;
 
-    font-family: inherit;
     font-size: 13px;
-    font-weight: 700;
+
+    font-weight: 800;
+
+    color: var(--soft);
 
     cursor: pointer;
-    transition: var(--transition);
+
+    transition: .2s;
 }
 
 .tab:hover {
-    color: var(--teal);
+    background: #f1f8f7;
 }
 
 .tab.active {
+    background: var(--green);
+
     color: white;
-    background: var(--primary);
-    box-shadow: 0 5px 14px rgba(33,184,151,.25);
+
+    box-shadow:
+        0 5px 15px rgba(33,184,151,.2);
 }
 
 /* =========================================================
    SECTIONS
-   ========================================================= */
+========================================================= */
 
 .section {
     display: none;
-    animation: sectionIn .25s ease;
 }
 
 .section.active {
     display: block;
+
+    animation: sectionIn .3s ease;
 }
 
 @keyframes sectionIn {
+
     from {
         opacity: 0;
-        transform: translateY(8px);
+        transform: translateY(7px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
     }
+
 }
 
 /* =========================================================
-   SECTION HEADING
-   ========================================================= */
+   FILTERS
+========================================================= */
 
-.section-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    gap: 20px;
+.filters {
+    display: grid;
+
+    grid-template-columns:
+        1fr 180px 180px;
+
+    gap: 10px;
 
     margin-bottom: 18px;
 }
 
-.section-heading h2 {
-    font-family: "Montserrat", sans-serif;
-    font-size: 23px;
-    letter-spacing: -.02em;
-}
-
-.section-heading p {
-    color: var(--text-muted);
-    font-size: 13px;
-    margin-top: 5px;
-}
-
-.result-count {
-    color: var(--text-soft);
-    font-size: 12px;
-    font-weight: 700;
-}
-
-/* =========================================================
-   FILTER PANEL
-   ========================================================= */
-
-.filter-panel {
-    display: grid;
-    grid-template-columns: 1fr auto auto auto;
-    gap: 10px;
-
-    padding: 12px;
-
-    background: rgba(255,255,255,.88);
-    border: 1px solid var(--border);
-    border-radius: 17px;
-
-    box-shadow: var(--shadow-sm);
-    margin-bottom: 20px;
-}
-
-.search-box {
-    position: relative;
-}
-
-.search-box input {
-    padding-left: 40px;
-}
-
-.search-icon {
-    position: absolute;
-    left: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 15px;
-    color: var(--text-muted);
-    pointer-events: none;
-}
-
-select,
-input,
-textarea {
+.filters input,
+.filters select,
+.form-row input,
+.form-row select,
+.form-row textarea {
     width: 100%;
 
     border: 1px solid var(--border);
+
     background: white;
-    color: var(--text);
 
-    border-radius: 11px;
+    border-radius: 10px;
 
-    padding: 11px 13px;
+    padding: 12px 13px;
+
+    font: inherit;
+
+    font-size: 13px;
 
     outline: none;
 
-    font-family: inherit;
-    font-size: 13px;
-
-    transition: var(--transition);
+    transition: .2s;
 }
 
-select {
-    min-width: 145px;
-}
+.filters input:focus,
+.filters select:focus,
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+    border-color: var(--green);
 
-input:hover,
-select:hover,
-textarea:hover {
-    border-color: #b9d4d5;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 4px rgba(33,184,151,.09);
-}
-
-textarea {
-    resize: vertical;
-    min-height: 95px;
+    box-shadow:
+        0 0 0 3px rgba(33,184,151,.1);
 }
 
 /* =========================================================
-   CATEGORY QUICK FILTERS
-   ========================================================= */
-
-.quick-filters {
-    display: flex;
-    gap: 7px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-}
-
-.quick-filter {
-    border: 1px solid var(--border);
-    background: white;
-    color: var(--text-soft);
-
-    padding: 7px 12px;
-    border-radius: 999px;
-
-    font-family: inherit;
-    font-size: 11px;
-    font-weight: 700;
-
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.quick-filter:hover {
-    border-color: var(--primary);
-    color: var(--primary-dark);
-}
-
-.quick-filter.active {
-    background: var(--primary-light);
-    border-color: #bce9de;
-    color: var(--primary-dark);
-}
-
-/* =========================================================
-   ITEMS
-   ========================================================= */
+   ITEM GRID
+========================================================= */
 
 .items-grid {
     display: grid;
-    gap: 13px;
+
+    gap: 12px;
 }
 
 .item-card {
-    position: relative;
+    background: white;
 
-    display: grid;
-    grid-template-columns: 90px 1fr auto;
-    gap: 17px;
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    padding: 18px;
+
+    display: flex;
+
     align-items: center;
 
-    background: rgba(255,255,255,.96);
-    border: 1px solid var(--border);
-    border-radius: 19px;
+    justify-content: space-between;
 
-    padding: 15px;
+    gap: 18px;
 
-    box-shadow: var(--shadow-sm);
+    box-shadow:
+        0 5px 18px rgba(15,80,85,.045);
 
-    transition: var(--transition);
-
-    overflow: hidden;
-}
-
-.item-card::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 15px;
-    bottom: 15px;
-    width: 3px;
-
-    border-radius: 5px;
-    background: var(--primary);
+    transition: .2s;
 }
 
 .item-card:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow);
-    border-color: #c9dfe0;
+    transform: translateY(-2px);
+
+    box-shadow: var(--shadow-hover);
 }
 
-.item-visual {
-    width: 90px;
-    height: 90px;
-
-    border-radius: 15px;
-
+.item-left {
     display: flex;
-    align-items: center;
-    justify-content: center;
 
-    background:
-        linear-gradient(145deg,#f0f7f7,#e4f2f1);
+    gap: 15px;
 
-    overflow: hidden;
+    align-items: flex-start;
 
-    flex-shrink: 0;
-}
-
-.item-visual img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    cursor: zoom-in;
-}
-
-.item-emoji {
-    font-size: 38px;
-}
-
-.item-body {
     min-width: 0;
 }
 
-.item-topline {
+.item-icon {
+    width: 52px;
+    height: 52px;
+
+    flex-shrink: 0;
+
     display: flex;
+
     align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 5px;
+
+    justify-content: center;
+
+    background: #eff9f7;
+
+    border-radius: 13px;
+
+    font-size: 24px;
+}
+
+.item-content {
+    min-width: 0;
 }
 
 .item-name {
     font-size: 16px;
-    font-weight: 800;
-    color: var(--dark);
-}
 
-.badge {
-    display: inline-flex;
-    align-items: center;
-
-    padding: 4px 9px;
-    border-radius: 999px;
-
-    font-size: 9px;
     font-weight: 800;
 
-    text-transform: uppercase;
-    letter-spacing: .06em;
-}
+    margin-bottom: 5px;
 
-.badge-lost {
-    background: var(--lost-bg);
-    color: var(--lost);
-}
-
-.badge-found {
-    background: var(--found-bg);
-    color: var(--found);
-}
-
-.badge-claimed {
-    background: var(--claimed-bg);
-    color: var(--claimed);
-}
-
-.badge-returned {
-    background: var(--returned-bg);
-    color: var(--returned);
+    overflow-wrap: anywhere;
 }
 
 .item-meta {
-    color: var(--text-muted);
-    font-size: 12px;
-    line-height: 1.55;
-}
+    color: var(--soft);
 
-.item-meta strong {
-    color: var(--text-soft);
+    font-size: 12px;
+
+    line-height: 1.55;
 }
 
 .item-description {
-    color: var(--text-soft);
-    font-size: 12px;
-    line-height: 1.55;
-
-    margin-top: 5px;
-
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.item-bottom {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    flex-wrap: wrap;
-    margin-top: 9px;
-}
-
-.timer {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-
-    padding: 5px 8px;
-
-    background: #eef8f7;
-    color: #166773;
-
-    border-radius: 7px;
-
-    font-size: 10px;
-    font-weight: 700;
-}
-
-.item-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-}
-
-.action-btn {
-    border-radius: 10px;
-
-    padding: 9px 14px;
-
-    font-family: inherit;
-    font-size: 11px;
-    font-weight: 800;
-
-    cursor: pointer;
-    white-space: nowrap;
-
-    transition: var(--transition);
-}
-
-.view-btn {
-    color: var(--teal-dark);
-    background: #edf8f8;
-    border: 1px solid #c9e9eb;
-}
-
-.view-btn:hover {
-    background: #e2f4f4;
-}
-
-.claim-btn {
-    color: #087c8b;
-    background: var(--found-bg);
-    border: 1px solid #b9e1e4;
-}
-
-.claim-btn:hover {
-    transform: translateY(-1px);
-}
-
-.return-btn {
-    color: var(--returned);
-    background: var(--returned-bg);
-    border: 1px solid #d8c8ef;
-}
-
-.return-btn:hover {
-    transform: translateY(-1px);
-}
-
-/* =========================================================
-   EMPTY STATE
-   ========================================================= */
-
-.empty-state {
-    padding: 65px 25px;
-
-    text-align: center;
-
-    background: rgba(255,255,255,.70);
-    border: 1px dashed var(--border);
-    border-radius: 20px;
-}
-
-.empty-icon {
-    width: 65px;
-    height: 65px;
-
-    margin: 0 auto 15px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 20px;
-    background: var(--primary-light);
-
-    font-size: 28px;
-}
-
-.empty-state h3 {
-    font-family: "Montserrat", sans-serif;
-    margin-bottom: 6px;
-}
-
-.empty-state p {
-    color: var(--text-muted);
-    font-size: 13px;
-}
-
-/* =========================================================
-   FORM
-   ========================================================= */
-
-.form-layout {
-    display: grid;
-    grid-template-columns: minmax(0,720px) 300px;
-    gap: 20px;
-    align-items: start;
-}
-
-.form-card {
-    background: rgba(255,255,255,.97);
-    border: 1px solid var(--border);
-    border-radius: 21px;
-
-    padding: 28px;
-
-    box-shadow: var(--shadow-sm);
-}
-
-.form-header {
-    margin-bottom: 25px;
-}
-
-.form-header-icon {
-    width: 45px;
-    height: 45px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 13px;
-
-    background: var(--primary-light);
-
-    font-size: 22px;
-
-    margin-bottom: 12px;
-}
-
-.form-header h2 {
-    font-family: "Montserrat", sans-serif;
-    font-size: 23px;
-}
-
-.form-header p {
-    color: var(--text-muted);
-    font-size: 13px;
-    line-height: 1.6;
-    margin-top: 5px;
-}
-
-.form-section {
-    margin-top: 25px;
-}
-
-.form-section-title {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-
-    color: var(--teal-dark);
-
-    font-size: 11px;
-    font-weight: 800;
-
-    text-transform: uppercase;
-    letter-spacing: .10em;
-
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--border);
-
-    margin-bottom: 16px;
-}
-
-.form-section-number {
-    width: 22px;
-    height: 22px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: var(--primary);
-    color: white;
-
-    border-radius: 50%;
-
-    font-size: 9px;
-}
-
-.form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
-
-.form-group {
-    margin-bottom: 16px;
-}
-
-.form-group.full {
-    grid-column: 1 / -1;
-}
-
-.form-group label {
-    display: block;
-
-    color: var(--text-soft);
+    color: var(--muted);
 
     font-size: 12px;
-    font-weight: 700;
-
-    margin-bottom: 6px;
-}
-
-.required {
-    color: var(--danger);
-}
-
-.helper {
-    margin-top: 5px;
-    color: var(--text-muted);
-    font-size: 10px;
-}
-
-/* =========================================================
-   PHOTO UPLOAD
-   ========================================================= */
-
-.upload-box {
-    position: relative;
-
-    border: 1.5px dashed #abdcd1;
-    border-radius: 14px;
-
-    background: #f7fcfb;
-
-    padding: 18px;
-
-    text-align: center;
-
-    transition: var(--transition);
-}
-
-.upload-box:hover {
-    background: #f1faf7;
-    border-color: var(--primary);
-}
-
-.upload-icon {
-    font-size: 25px;
-    margin-bottom: 5px;
-}
-
-.upload-title {
-    color: var(--text);
-    font-size: 12px;
-    font-weight: 700;
-}
-
-.upload-subtitle {
-    color: var(--text-muted);
-    font-size: 10px;
-    margin-top: 3px;
-}
-
-.upload-box input {
-    margin-top: 12px;
-}
-
-.photo-preview {
-    display: none;
-    position: relative;
-    margin-top: 13px;
-}
-
-.photo-preview.show {
-    display: inline-block;
-}
-
-.photo-preview img {
-    width: 190px;
-    height: 135px;
-
-    object-fit: cover;
-
-    border-radius: 12px;
-    border: 1px solid var(--border);
-
-    box-shadow: var(--shadow-sm);
-}
-
-.remove-photo {
-    position: absolute;
-    right: -7px;
-    top: -7px;
-
-    width: 25px;
-    height: 25px;
-
-    border: none;
-    border-radius: 50%;
-
-    background: var(--danger);
-    color: white;
-
-    cursor: pointer;
-}
-
-/* =========================================================
-   SUBMIT BUTTON
-   ========================================================= */
-
-.submit-row {
-    margin-top: 25px;
-    padding-top: 20px;
-
-    border-top: 1px solid var(--border);
-
-    display: flex;
-    justify-content: flex-end;
-}
-
-.submit-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-
-    border: none;
-
-    background: linear-gradient(
-        135deg,
-        var(--primary),
-        #19a98a
-    );
-
-    color: white;
-
-    padding: 12px 22px;
-
-    border-radius: 11px;
-
-    font-family: inherit;
-    font-size: 13px;
-    font-weight: 800;
-
-    cursor: pointer;
-
-    box-shadow: 0 8px 20px rgba(33,184,151,.22);
-
-    transition: var(--transition);
-}
-
-.submit-btn:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 28px rgba(33,184,151,.28);
-}
-
-.submit-btn:disabled {
-    opacity: .6;
-    cursor: wait;
-}
-
-/* =========================================================
-   INFORMATION CARD
-   ========================================================= */
-
-.info-card {
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #eef9f7
-        );
-
-    border: 1px solid #d7ece8;
-    border-radius: 20px;
-
-    padding: 21px;
-
-    box-shadow: var(--shadow-sm);
-}
-
-.info-card h3 {
-    font-family: "Montserrat", sans-serif;
-    font-size: 16px;
-    margin-bottom: 13px;
-}
-
-.info-list {
-    list-style: none;
-}
-
-.info-list li {
-    display: flex;
-    gap: 9px;
-
-    color: var(--text-soft);
-    font-size: 11px;
-    line-height: 1.55;
-
-    padding: 9px 0;
-
-    border-bottom: 1px solid #deedeb;
-}
-
-.info-list li:last-child {
-    border-bottom: none;
-}
-
-.info-number {
-    color: var(--primary-dark);
-    font-weight: 800;
-}
-
-/* =========================================================
-   ALERTS / TOASTS
-   ========================================================= */
-
-.toast-container {
-    position: fixed;
-
-    right: 20px;
-    bottom: 20px;
-
-    z-index: 1000;
-
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-
-    width: min(360px, calc(100vw - 40px));
-}
-
-.toast {
-    display: flex;
-    align-items: flex-start;
-    gap: 11px;
-
-    padding: 13px 14px;
-
-    background: white;
-    border: 1px solid var(--border);
-
-    border-radius: 14px;
-
-    box-shadow: var(--shadow-lg);
-
-    animation: toastIn .25s ease;
-}
-
-@keyframes toastIn {
-    from {
-        opacity: 0;
-        transform: translateY(15px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.toast-icon {
-    font-size: 17px;
-}
-
-.toast-content {
-    flex: 1;
-}
-
-.toast-title {
-    font-size: 12px;
-    font-weight: 800;
-}
-
-.toast-message {
-    color: var(--text-soft);
-    font-size: 11px;
-    line-height: 1.45;
-    margin-top: 2px;
-}
-
-.toast-close {
-    border: none;
-    background: transparent;
-    color: var(--text-muted);
-    cursor: pointer;
-}
-
-/* =========================================================
-   MODAL
-   ========================================================= */
-
-.modal-overlay {
-    position: fixed;
-    inset: 0;
-
-    z-index: 500;
-
-    display: none;
-    align-items: center;
-    justify-content: center;
-
-    padding: 20px;
-
-    background: rgba(4,34,40,.68);
-    backdrop-filter: blur(8px);
-}
-
-.modal-overlay.open {
-    display: flex;
-    animation: fadeIn .18s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.modal {
-    width: min(500px, 100%);
-
-    max-height: calc(100vh - 40px);
-    overflow-y: auto;
-
-    background: white;
-
-    border-radius: 22px;
-
-    padding: 25px;
-
-    box-shadow: var(--shadow-lg);
-
-    animation: modalIn .22s ease;
-}
-
-@keyframes modalIn {
-    from {
-        opacity: 0;
-        transform: scale(.96) translateY(8px);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-    align-items: flex-start;
-
-    margin-bottom: 18px;
-}
-
-.modal h3 {
-    font-family: "Montserrat", sans-serif;
-    font-size: 20px;
-}
-
-.close-modal {
-    width: 32px;
-    height: 32px;
-
-    border: 1px solid var(--border);
-    background: white;
-
-    border-radius: 10px;
-
-    cursor: pointer;
-
-    color: var(--text-soft);
-}
-
-.modal-sub {
-    color: var(--text-muted);
-    font-size: 12px;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-.modal-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 8px;
-    margin-top: 20px;
-}
-
-.ghost-btn {
-    border: 1px solid var(--border);
-    background: white;
-    color: var(--text-soft);
-
-    padding: 10px 16px;
-
-    border-radius: 10px;
-
-    font-family: inherit;
-    font-size: 12px;
-    font-weight: 700;
-
-    cursor: pointer;
-}
-
-.ghost-btn:hover {
-    background: #f5f8f8;
-}
-
-/* =========================================================
-   DETAIL MODAL
-   ========================================================= */
-
-.detail-image {
-    width: 100%;
-    max-height: 280px;
-
-    object-fit: cover;
-
-    border-radius: 15px;
-
-    margin-bottom: 16px;
-}
-
-.detail-placeholder {
-    height: 190px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: #eff8f7;
-
-    border-radius: 15px;
-
-    font-size: 60px;
-
-    margin-bottom: 16px;
-}
-
-.detail-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-}
-
-.detail-box {
-    padding: 11px;
-
-    background: #f7fafa;
-    border: 1px solid var(--border);
-
-    border-radius: 11px;
-}
-
-.detail-label {
-    color: var(--text-muted);
-    font-size: 9px;
-    font-weight: 800;
-
-    text-transform: uppercase;
-    letter-spacing: .07em;
-}
-
-.detail-value {
-    color: var(--text);
-    font-size: 12px;
-    font-weight: 600;
 
     margin-top: 4px;
 }
 
-/* =========================================================
-   LOADING
-   ========================================================= */
+.badge {
+    display: inline-block;
 
-.loading {
+    padding: 5px 9px;
+
+    border-radius: 999px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    margin-top: 8px;
+}
+
+.badge-lost {
+    background: #fff5e6;
+
+    color: var(--lost);
+}
+
+.badge-found {
+    background: #e7f8fa;
+
+    color: var(--found);
+}
+
+.badge-claimed {
+    background: #edf7eb;
+
+    color: var(--claimed);
+}
+
+.badge-returned {
+    background: #f1ecfa;
+
+    color: var(--returned);
+}
+
+.timer {
+    color: var(--muted);
+
+    font-size: 10px;
+
+    margin-top: 8px;
+}
+
+.item-photo {
+    width: 80px;
+    height: 80px;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+
+    margin-left: 12px;
+
+    border: 1px solid var(--border);
+}
+
+.item-actions {
     display: flex;
-    justify-content: center;
+
+    gap: 8px;
+
+    flex-shrink: 0;
+}
+
+.claim-btn,
+.return-btn {
+    border: none;
+
+    padding: 10px 14px;
+
+    border-radius: 9px;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+.claim-btn {
+    background: var(--green);
+
+    color: white;
+}
+
+.return-btn {
+    background: #eef7f8;
+
+    color: var(--teal-dark);
+}
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.empty {
+    background: white;
+
+    border: 1px dashed var(--border);
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    padding: 55px 20px;
+
+    color: var(--muted);
+}
+
+.empty-icon {
+    font-size: 40px;
+
+    margin-bottom: 10px;
+}
+
+.empty h3 {
+    color: var(--text);
+
+    margin-bottom: 5px;
+}
+
+/* =========================================================
+   FORMS
+========================================================= */
+
+.form-card {
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    padding: 27px;
+
+    box-shadow: var(--shadow);
+}
+
+.form-section-title {
+    font-weight: 800;
+
+    font-size: 15px;
+
+    margin: 5px 0 17px;
+
+    padding-bottom: 9px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.form-section-title:not(:first-child) {
+    margin-top: 28px;
+}
+
+.form-2col {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 15px;
+}
+
+.form-row {
+    margin-bottom: 15px;
+}
+
+.form-row label {
+    display: block;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    margin-bottom: 6px;
+
+    color: var(--soft);
+}
+
+.form-row textarea {
+    min-height: 100px;
+
+    resize: vertical;
+}
+
+.locked-input {
+    background: #f1f7f6 !important;
+
+    cursor: not-allowed;
+}
+
+.user-confirmation {
+    display: flex;
+
     align-items: center;
 
-    gap: 9px;
+    gap: 10px;
 
-    padding: 50px;
+    background: #eefaf7;
 
-    color: var(--text-muted);
+    border: 1px solid #cceee5;
+
+    padding: 11px 13px;
+
+    border-radius: 10px;
+
+    margin-bottom: 18px;
+
     font-size: 12px;
+
+    color: var(--soft);
 }
 
-.spinner {
-    width: 20px;
-    height: 20px;
+.user-check {
+    width: 25px;
+    height: 25px;
 
-    border: 2px solid #dbeeed;
-    border-top-color: var(--primary);
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: var(--green);
+
+    color: white;
 
     border-radius: 50%;
-
-    animation: spin .7s linear infinite;
 }
 
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
+.btn-submit {
+    width: 100%;
+
+    border: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green),
+            var(--teal)
+        );
+
+    color: white;
+
+    padding: 14px;
+
+    border-radius: 11px;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.btn-submit:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 8px 20px rgba(33,184,151,.2);
+}
+
+.btn-submit:disabled {
+    opacity: .6;
+
+    cursor: not-allowed;
+}
+
+/* =========================================================
+   ALERT
+========================================================= */
+
+.alert {
+    display: none;
+
+    background: #e6f8f2;
+
+    color: #087653;
+
+    border: 1px solid #bcebdc;
+
+    padding: 12px 15px;
+
+    border-radius: 10px;
+
+    margin-bottom: 15px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+.alert.show {
+    display: block;
+}
+
+.alert-note {
+    background: #fff8e9;
+
+    border: 1px solid #f2dfaf;
+
+    color: #73520d;
+
+    padding: 12px 15px;
+
+    border-radius: 10px;
+
+    font-size: 12px;
+
+    margin-bottom: 15px;
+}
+
+/* =========================================================
+   PHOTO
+========================================================= */
+
+.photo-upload {
+    border: 1px dashed var(--border);
+
+    border-radius: 11px;
+
+    padding: 13px;
+
+    background: #fafdfd;
+}
+
+.photo-preview {
+    display: none;
+
+    margin-top: 12px;
+}
+
+.photo-preview.show {
+    display: block;
+}
+
+.photo-preview img {
+    max-width: 180px;
+    max-height: 180px;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+
+    border: 1px solid var(--border);
+}
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(8,40,42,.48);
+
+    backdrop-filter: blur(5px);
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    z-index: 500;
+
+    padding: 20px;
+}
+
+.modal-overlay.open {
+    display: flex;
+}
+
+.modal {
+    background: white;
+
+    width: min(430px,100%);
+
+    border-radius: 20px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.2);
+
+    animation: modalIn .25s ease;
+}
+
+@keyframes modalIn {
+
+    from {
+        opacity: 0;
+        transform: scale(.96) translateY(10px);
     }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+
+}
+
+.modal h3 {
+    margin-bottom: 7px;
+}
+
+.modal-sub {
+    color: var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+    margin-bottom: 18px;
+}
+
+.modal-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 9px;
+}
+
+.btn-ghost {
+    border: 1px solid var(--border);
+
+    background: white;
+
+    color: var(--soft);
+
+    padding: 10px 15px;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    font-weight: 700;
+}
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast {
+    position: fixed;
+
+    bottom: 25px;
+
+    right: 25px;
+
+    background: #102f32;
+
+    color: white;
+
+    padding: 13px 17px;
+
+    border-radius: 11px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.2);
+
+    transform: translateY(120px);
+
+    opacity: 0;
+
+    transition: .3s;
+
+    z-index: 2000;
+}
+
+.toast.show {
+    transform: translateY(0);
+
+    opacity: 1;
 }
 
 /* =========================================================
    FOOTER
-   ========================================================= */
+========================================================= */
 
 footer {
-    background: #092d34;
+    background: #0b292d;
 
-    color: rgba(255,255,255,.58);
+    color: rgba(255,255,255,.6);
 
     text-align: center;
 
-    padding: 32px 20px;
+    padding: 28px 20px;
 
     font-size: 11px;
+
     line-height: 1.8;
 }
 
@@ -1532,1383 +1317,1151 @@ footer strong {
     color: white;
 }
 
-.footer-brand {
-    color: #56d7bd;
-}
-
 /* =========================================================
-   MOBILE BOTTOM NAV
-   ========================================================= */
+   MOBILE
+========================================================= */
 
-.mobile-nav {
-    display: none;
-}
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-
-@media(max-width:850px) {
-
-    .form-layout {
-        grid-template-columns: 1fr;
-    }
-
-    .info-card {
-        order: 2;
-    }
-
-    .filter-panel {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .search-box {
-        grid-column: 1 / -1;
-    }
-}
-
-@media(max-width:650px) {
+@media(max-width:700px) {
 
     .header-inner {
         padding: 10px 15px;
-    }
-
-    .creators {
-        display: none;
     }
 
     .portal-label {
         display: none;
     }
 
-    .hero {
-        padding: 50px 18px 35px;
+    .user-email {
+        display: none;
     }
 
-    .hero h1 {
-        font-size: 37px;
-    }
-
-    .stats {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .main {
-        padding: 25px 14px 100px;
-    }
-
-    .navigation {
-        margin-bottom: 18px;
-    }
-
-    .tabs {
-        width: 100%;
-    }
-
-    .tab {
-        flex: 1;
-        padding: 10px 7px;
+    .user-name {
         font-size: 11px;
     }
 
-    .section-heading {
-        align-items: flex-start;
+    .stats-bar {
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
-    .filter-panel {
+    .filters {
         grid-template-columns: 1fr;
     }
 
-    .search-box {
-        grid-column: auto;
+    .tabs {
+        overflow-x: auto;
     }
 
-    select {
-        width: 100%;
+    .tab {
+        min-width: 130px;
+    }
+
+    .form-2col {
+        grid-template-columns: 1fr;
     }
 
     .item-card {
-        grid-template-columns: 70px 1fr;
-        gap: 12px;
-    }
-
-    .item-visual {
-        width: 70px;
-        height: 70px;
-    }
-
-    .item-emoji {
-        font-size: 29px;
+        align-items: flex-start;
     }
 
     .item-actions {
-        grid-column: 1 / -1;
-        flex-direction: row;
-        justify-content: flex-end;
+        flex-direction: column;
     }
 
-    .form-card {
-        padding: 20px;
-    }
-
-    .form-grid {
-        grid-template-columns: 1fr;
-        gap: 0;
-    }
-
-    .form-group.full {
-        grid-column: auto;
-    }
-
-    .submit-row {
-        justify-content: stretch;
-    }
-
-    .submit-btn {
-        width: 100%;
-    }
-
-    .mobile-nav {
-        position: fixed;
-        display: grid;
-        grid-template-columns: repeat(3,1fr);
-
-        bottom: 0;
-        left: 0;
-        right: 0;
-
-        z-index: 150;
-
-        background: rgba(255,255,255,.95);
-        backdrop-filter: blur(15px);
-
-        border-top: 1px solid var(--border);
-
-        padding: 7px 10px;
-
-        box-shadow: 0 -8px 25px rgba(0,0,0,.08);
-    }
-
-    .mobile-nav button {
-        border: none;
-        background: transparent;
-
-        color: var(--text-muted);
-
-        font-family: inherit;
-        font-size: 10px;
-        font-weight: 700;
-
-        padding: 5px;
-
-        cursor: pointer;
-    }
-
-    .mobile-nav button span {
-        display: block;
-        font-size: 18px;
-        margin-bottom: 2px;
-    }
-
-    .mobile-nav button.active {
-        color: var(--primary-dark);
-    }
-
-    .detail-grid {
-        grid-template-columns: 1fr;
-    }
 }
 
-@media(max-width:400px) {
+@media(max-width:480px) {
 
-    .school-name {
-        font-size: 15px;
+    .auth-card {
+        padding: 32px 22px;
     }
 
-    .school-tagline {
-        font-size: 7px;
+    .hero {
+        padding-top: 40px;
     }
 
     .hero h1 {
         font-size: 32px;
     }
 
-    .item-name {
-        font-size: 14px;
+    .main-wrap {
+        padding: 0 12px;
     }
+
+    .form-card {
+        padding: 20px 16px;
+    }
+
+    .item-card {
+        flex-direction: column;
+    }
+
+    .item-left {
+        width: 100%;
+    }
+
+    .item-actions {
+        width: 100%;
+
+        flex-direction: row;
+    }
+
+    .claim-btn,
+    .return-btn {
+        flex: 1;
+    }
+
 }
 
-/* =========================================================
-   ACCESSIBILITY
-   ========================================================= */
-
-button:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-    outline: 3px solid rgba(33,184,151,.25);
-    outline-offset: 2px;
-}
 </style>
 </head>
 
 <body>
 
-<div class="top-accent"></div>
+<!-- =========================================================
+     LOGIN SCREEN
+========================================================= -->
 
-<!-- =======================================================
-     HEADER
-     ======================================================= -->
+<div id="authScreen">
 
-<header>
-    <div class="header-inner">
+    <div class="auth-card">
 
-        <div class="logo-group">
+        <div class="auth-logo">
 
-            <div class="logo-box">
-                <svg viewBox="0 0 100 60"
-                     fill="none"
-                     xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 100 60">
 
-                    <path
-                        d="M50 7L77 52H23L50 7Z"
-                        fill="#21b897"/>
+                <path
+                    d="M50 8L76 52H24L50 8Z"
+                    fill="#21b897"
+                />
 
-                    <path
-                        d="M28 22L49 52H7L28 22Z"
-                        fill="#36b3b0"/>
+                <path
+                    d="M28 22L48 52H8L28 22Z"
+                    fill="#36b3b0"
+                />
 
-                    <path
-                        d="M69 14L93 52H45L69 14Z"
-                        fill="#0f7187"/>
+                <path
+                    d="M68 14L92 52H44L68 14Z"
+                    fill="#0f7187"
+                />
 
-                </svg>
-            </div>
-
-            <div class="logo-text">
-                <div class="school-name">KHAITAN</div>
-                <div class="school-tagline">LEADERS FOR LIFE</div>
-            </div>
-
-            <div class="portal-label">
-                Lost & Found Portal
-            </div>
+            </svg>
 
         </div>
 
-        <div class="creators">
-            <span class="creator-dot"></span>
-            <span>Trishar Saxena & Krishna Sharma</span>
+        <div class="auth-school">
+            KHAITAN
         </div>
 
-    </div>
-</header>
-
-
-<!-- =======================================================
-     HERO
-     ======================================================= -->
-
-<section class="hero">
-
-    <div class="hero-content">
-
-        <div class="hero-badge">
-            <span class="live-dot"></span>
-            Live school portal
+        <div class="auth-tagline">
+            LEADERS FOR LIFE
         </div>
 
         <h1>
-            Lost something?<br>
-            <span>Let's reunite it.</span>
+            Lost & Found Portal
         </h1>
 
-        <p class="hero-sub">
-            Search lost and found items around school,
-            report something you've lost or found,
-            and help belongings get back to their owners.
+        <p>
+            Sign in using your official
+            Khaitan Public School Microsoft
+            account to continue.
         </p>
 
-        <div class="hero-actions">
+        <button
+            class="microsoft-btn"
+            id="loginBtn"
+        >
 
-            <button
-                class="hero-btn hero-btn-primary"
-                onclick="switchTab('browse')">
+            <span class="microsoft-icon">
 
-                🔍 Browse items
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
 
-            </button>
+            </span>
 
-            <button
-                class="hero-btn hero-btn-secondary"
-                onclick="switchTab('lost')">
+            Continue with School Account
 
-                ❗ Report lost item
+        </button>
 
-            </button>
-
-            <button
-                class="hero-btn hero-btn-secondary"
-                onclick="switchTab('found')">
-
-                📍 Report found item
-
-            </button>
-
-        </div>
-
-
-        <div class="stats">
-
-            <div class="stat-card">
-                <div class="stat-number" id="statLost">0</div>
-                <div class="stat-label">Lost</div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-number" id="statFound">0</div>
-                <div class="stat-label">Found</div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-number" id="statClaimed">0</div>
-                <div class="stat-label">Claimed</div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-number" id="statReturned">0</div>
-                <div class="stat-label">Returned</div>
-            </div>
-
-        </div>
+        <p class="auth-note">
+            🔒 Only @khaitanpublicschool.com accounts
+            are permitted.
+        </p>
 
     </div>
+
+</div>
+
+
+<!-- =========================================================
+     LOADING
+========================================================= -->
+
+<div id="loadingScreen">
+
+    <div class="loader"></div>
+
+    <strong>
+        Signing you in...
+    </strong>
+
+</div>
+
+
+<!-- =========================================================
+     APPLICATION
+========================================================= -->
+
+<div id="app">
+
+<div class="top-accent"></div>
+
+
+<!-- HEADER -->
+
+<header>
+
+<div class="header-inner">
+
+<div class="logo-group">
+
+<div class="logo-mountains">
+
+<svg viewBox="0 0 100 60">
+
+<path
+d="M50 8L76 52H24L50 8Z"
+fill="#21b897"
+/>
+
+<path
+d="M28 22L48 52H8L28 22Z"
+fill="#36b3b0"
+/>
+
+<path
+d="M68 14L92 52H44L68 14Z"
+fill="#0f7187"
+/>
+
+</svg>
+
+</div>
+
+<div>
+
+<div class="school-name">
+KHAITAN
+</div>
+
+<div class="school-tagline">
+LEADERS FOR LIFE
+</div>
+
+</div>
+
+<div class="portal-label">
+Lost & Found Portal
+</div>
+
+</div>
+
+
+<div class="user-area">
+
+<div class="user-info">
+
+<div
+class="user-name"
+id="headerUserName"
+>
+Student
+</div>
+
+<div
+class="user-email"
+id="headerUserEmail"
+>
+school account
+</div>
+
+</div>
+
+<button
+class="logout-btn"
+id="logoutBtn"
+>
+Sign out
+</button>
+
+</div>
+
+</div>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<h1>
+Lost something at school?<br>
+
+<span>
+We'll help you find it.
+</span>
+
+</h1>
+
+<p class="hero-sub">
+
+Browse reported items, report something
+you lost or found, and help reunite
+belongings with their owners.
+
+</p>
+
+
+<div class="stats-bar">
+
+<div class="stat-pill">
+
+<div
+class="stat-num"
+id="statLost"
+>
+0
+</div>
+
+<div class="stat-label">
+Items Lost
+</div>
+
+</div>
+
+
+<div class="stat-pill">
+
+<div
+class="stat-num"
+id="statFound"
+>
+0
+</div>
+
+<div class="stat-label">
+Items Found
+</div>
+
+</div>
+
+
+<div class="stat-pill">
+
+<div
+class="stat-num"
+id="statClaimed"
+>
+0
+</div>
+
+<div class="stat-label">
+Claimed
+</div>
+
+</div>
+
+
+<div class="stat-pill">
+
+<div
+class="stat-num"
+id="statReturned"
+>
+0
+</div>
+
+<div class="stat-label">
+Returned
+</div>
+
+</div>
+
+</div>
 
 </section>
 
 
-<!-- =======================================================
-     MAIN
-     ======================================================= -->
-
-<main class="main">
-
-    <div class="navigation">
-
-        <div class="tabs">
-
-            <button
-                class="tab active"
-                data-tab="browse"
-                onclick="switchTab('browse')">
-
-                🔍 Browse
-
-            </button>
-
-            <button
-                class="tab"
-                data-tab="lost"
-                onclick="switchTab('lost')">
-
-                ❗ Report Lost
-
-            </button>
-
-            <button
-                class="tab"
-                data-tab="found"
-                onclick="switchTab('found')">
-
-                📍 Report Found
-
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- ===================================================
-         BROWSE SECTION
-         =================================================== -->
-
-    <section
-        class="section active"
-        id="section-browse">
-
-        <div class="section-heading">
-
-            <div>
-                <h2>Browse reported items</h2>
-                <p>Find belongings reported by students.</p>
-            </div>
-
-            <div
-                class="result-count"
-                id="resultCount">
-                0 items
-            </div>
-
-        </div>
-
-
-        <div class="filter-panel">
-
-            <div class="search-box">
-
-                <span class="search-icon">⌕</span>
-
-                <input
-                    type="search"
-                    id="searchInput"
-                    placeholder="Search item, description or location..."
-                    autocomplete="off">
-
-            </div>
-
-            <select id="filterCat">
-
-                <option value="">All categories</option>
-                <option value="Clothing">Clothing</option>
-                <option value="Electronics">Electronics</option>
-                <option value="Stationery">Stationery</option>
-                <option value="Bag / backpack">Bag / backpack</option>
-                <option value="Sports gear">Sports gear</option>
-                <option value="Other">Other</option>
-
-            </select>
-
-            <select id="filterStatus">
-
-                <option value="">All status</option>
-                <option value="lost">Lost</option>
-                <option value="found">Found</option>
-                <option value="claimed">Claimed</option>
-                <option value="returned">Returned</option>
-
-            </select>
-
-            <select id="sortItems">
-
-                <option value="newest">Newest first</option>
-                <option value="oldest">Oldest first</option>
-                <option value="name">Name A–Z</option>
-
-            </select>
-
-        </div>
-
-
-        <div class="quick-filters">
-
-            <button
-                class="quick-filter active"
-                data-category=""
-                onclick="quickCategory('')">
-                All
-            </button>
-
-            <button
-                class="quick-filter"
-                data-category="Clothing"
-                onclick="quickCategory('Clothing')">
-                👕 Clothing
-            </button>
-
-            <button
-                class="quick-filter"
-                data-category="Electronics"
-                onclick="quickCategory('Electronics')">
-                💻 Electronics
-            </button>
-
-            <button
-                class="quick-filter"
-                data-category="Stationery"
-                onclick="quickCategory('Stationery')">
-                ✏️ Stationery
-            </button>
-
-            <button
-                class="quick-filter"
-                data-category="Bag / backpack"
-                onclick="quickCategory('Bag / backpack')">
-                🎒 Bags
-            </button>
-
-            <button
-                class="quick-filter"
-                data-category="Sports gear"
-                onclick="quickCategory('Sports gear')">
-                ⚽ Sports
-            </button>
-
-        </div>
-
-
-        <div
-            class="items-grid"
-            id="itemsGrid">
-
-            <div class="loading">
-                <div class="spinner"></div>
-                Loading items...
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         LOST SECTION
-         =================================================== -->
-
-    <section
-        class="section"
-        id="section-lost">
-
-        <div class="form-layout">
-
-            <div class="form-card">
-
-                <div class="form-header">
-
-                    <div class="form-header-icon">
-                        ❗
-                    </div>
-
-                    <h2>Report a lost item</h2>
-
-                    <p>
-                        Tell us what you lost and where you last saw it.
-                        Your report will appear in the live portal.
-                    </p>
-
-                </div>
-
-
-                <div class="form-section">
-
-                    <div class="form-section-title">
-
-                        <span class="form-section-number">1</span>
-                        Your details
-
-                    </div>
-
-
-                    <div class="form-grid">
-
-                        <div class="form-group">
-
-                            <label>
-                                Full name
-                                <span class="required">*</span>
-                            </label>
-
-                            <input
-                                id="lostName"
-                                type="text"
-                                maxlength="80"
-                                placeholder="e.g. Priya Sharma">
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label>Class / Grade</label>
-
-                            <input
-                                id="lostClass"
-                                type="text"
-                                maxlength="20"
-                                placeholder="e.g. 10-A">
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="form-section">
-
-                    <div class="form-section-title">
-
-                        <span class="form-section-number">2</span>
-                        Item details
-
-                    </div>
-
-
-                    <div class="form-grid">
-
-                        <div class="form-group">
-
-                            <label>
-                                Item name
-                                <span class="required">*</span>
-                            </label>
-
-                            <input
-                                id="lostItem"
-                                type="text"
-                                maxlength="100"
-                                placeholder="e.g. Blue water bottle">
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label>Category</label>
-
-                            <select id="lostCat">
-
-                                <option>Clothing</option>
-                                <option>Electronics</option>
-                                <option>Stationery</option>
-                                <option>Bag / backpack</option>
-                                <option>Sports gear</option>
-                                <option>Other</option>
-
-                            </select>
-
-                        </div>
-
-
-                        <div class="form-group full">
-
-                            <label>Last seen location</label>
-
-                            <input
-                                id="lostLocation"
-                                type="text"
-                                maxlength="100"
-                                placeholder="e.g. Canteen, classroom 10-A, basketball court">
-
-                        </div>
-
-
-                        <div class="form-group full">
-
-                            <label>Description</label>
-
-                            <textarea
-                                id="lostDesc"
-                                maxlength="500"
-                                placeholder="Add colour, brand, unique markings or other useful details..."></textarea>
-
-                            <div class="helper">
-                                <span id="lostDescCount">0</span>/500 characters
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="form-section">
-
-                    <div class="form-section-title">
-
-                        <span class="form-section-number">3</span>
-                        Add a photo
-
-                    </div>
-
-
-                    <div class="upload-box">
-
-                        <div class="upload-icon">
-                            📷
-                        </div>
-
-                        <div class="upload-title">
-                            Add a clear photo of the item
-                        </div>
-
-                        <div class="upload-subtitle">
-                            JPG, PNG or WEBP · Automatically compressed
-                        </div>
-
-                        <input
-                            type="file"
-                            id="lostPhoto"
-                            accept="image/jpeg,image/png,image/webp">
-
-                        <div
-                            class="photo-preview"
-                            id="lostPhotoPreview">
-
-                            <button
-                                type="button"
-                                class="remove-photo"
-                                onclick="removePhoto('lostPhoto','lostPhotoPreview')">
-                                ×
-                            </button>
-
-                            <img id="lostPhotoPreviewImg">
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="submit-row">
-
-                    <button
-                        class="submit-btn"
-                        id="lostSubmitBtn"
-                        onclick="submitLost()">
-
-                        Post lost item
-                        <span>→</span>
-
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <div class="info-card">
-
-                <h3>Before you post</h3>
-
-                <ul class="info-list">
-
-                    <li>
-                        <span class="info-number">01</span>
-                        <span>Check Browse first to make sure the item hasn't already been reported.</span>
-                    </li>
-
-                    <li>
-                        <span class="info-number">02</span>
-                        <span>Add specific details such as colour, brand and unique markings.</span>
-                    </li>
-
-                    <li>
-                        <span class="info-number">03</span>
-                        <span>Items remain active for 30 days unless their status changes.</span>
-                    </li>
-
-                    <li>
-                        <span class="info-number">04</span>
-                        <span>Do not post passwords, phone numbers or other sensitive information.</span>
-                    </li>
-
-                </ul>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         FOUND SECTION
-         =================================================== -->
-
-    <section
-        class="section"
-        id="section-found">
-
-        <div class="form-layout">
-
-            <div class="form-card">
-
-                <div class="form-header">
-
-                    <div class="form-header-icon">
-                        📍
-                    </div>
-
-                    <h2>Report a found item</h2>
-
-                    <p>
-                        Found something at school? Report it here so
-                        its owner can identify it.
-                    </p>
-
-                </div>
-
-
-                <div class="form-section">
-
-                    <div class="form-section-title">
-
-                        <span class="form-section-number">1</span>
-                        Your details
-
-                    </div>
-
-
-                    <div class="form-grid">
-
-                        <div class="form-group">
-
-                            <label>
-                                Full name
-                                <span class="required">*</span>
-                            </label>
-
-                            <input
-                                id="foundName"
-                                type="text"
-                                maxlength="80"
-                                placeholder="e.g. Arjun Mehta">
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label>Class / Grade</label>
-
-                            <input
-                                id="foundClass"
-                                type="text"
-                                maxlength="20"
-                                placeholder="e.g. 9-B">
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="form-section">
-
-                    <div class="form-section-title">
-
-                        <span class="form-section-number">2</span>
-                        Item details
-
-                    </div>
-
-
-                    <div class="form-grid">
-
-                        <div class="form-group">
-
-                            <label>
-                                Item name
-                                <span class="required">*</span>
-                            </label>
-
-                            <input
-                                id="foundItem"
-                                type="text"
-                                maxlength="100"
-                                placeholder="e.g. Red umbrella">
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label>Category</label>
-
-                            <select id="foundCat">
-
-                                <option>Clothing</option>
-                                <option>Electronics</option>
-                                <option>Stationery</option>
-                                <option>Bag / backpack</option>
-                                <option>Sports gear</option>
-                                <option>Other</option>
-
-                            </select>
-
-                        </div>
-
-
-                        <div class="form-group full">
-
-                            <label>Where did you find it?</label>
-
-                            <input
-                                id="foundLocation"
-                                type="text"
-                                maxlength="100"
-                                placeholder="e.g. Library">
-
-                        </div>
-
-
-                        <div class="form-group full">
-
-                            <label>Description</label>
-
-                            <textarea
-                                id="foundDesc"
-                                maxlength="500"
-                                placeholder="Add colour, brand, markings or other useful details..."></textarea>
-
-                            <div class="helper">
-                                <span id="foundDescCount">0</span>/500 characters
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="form-section">
-
-                    <div class="form-section-title">
-
-                        <span class="form-section-number">3</span>
-                        Add a photo
-
-                    </div>
-
-
-                    <div class="upload-box">
-
-                        <div class="upload-icon">
-                            📷
-                        </div>
-
-                        <div class="upload-title">
-                            Add a clear photo of the item
-                        </div>
-
-                        <div class="upload-subtitle">
-                            JPG, PNG or WEBP · Automatically compressed
-                        </div>
-
-                        <input
-                            type="file"
-                            id="foundPhoto"
-                            accept="image/jpeg,image/png,image/webp">
-
-                        <div
-                            class="photo-preview"
-                            id="foundPhotoPreview">
-
-                            <button
-                                type="button"
-                                class="remove-photo"
-                                onclick="removePhoto('foundPhoto','foundPhotoPreview')">
-                                ×
-                            </button>
-
-                            <img id="foundPhotoPreviewImg">
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="submit-row">
-
-                    <button
-                        class="submit-btn"
-                        id="foundSubmitBtn"
-                        onclick="submitFound()">
-
-                        Post found item
-                        <span>→</span>
-
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <div class="info-card">
-
-                <h3>Found something?</h3>
-
-                <ul class="info-list">
-
-                    <li>
-                        <span class="info-number">01</span>
-                        <span>Please hand the physical item to the school office.</span>
-                    </li>
-
-                    <li>
-                        <span class="info-number">02</span>
-                        <span>Post the report so the owner knows their item has been found.</span>
-                    </li>
-
-                    <li>
-                        <span class="info-number">03</span>
-                        <span>Do not reveal every identifying detail in the description.</span>
-                    </li>
-
-                    <li>
-                        <span class="info-number">04</span>
-                        <span>Found reports automatically expire after 30 days.</span>
-                    </li>
-
-                </ul>
-
-            </div>
-
-        </div>
-
-    </section>
-
-</main>
-
-
-<!-- =======================================================
-     ITEM DETAILS MODAL
-     ======================================================= -->
-
-<div
-    class="modal-overlay"
-    id="detailModal"
-    onclick="overlayClose(event,'detailModal')">
-
-    <div class="modal">
-
-        <div class="modal-header">
-
-            <div>
-                <h3 id="detailTitle">Item details</h3>
-            </div>
-
-            <button
-                class="close-modal"
-                onclick="closeModal('detailModal')">
-                ×
-            </button>
-
-        </div>
-
-        <div id="detailContent"></div>
-
-        <div class="modal-actions">
-
-            <button
-                class="ghost-btn"
-                onclick="closeModal('detailModal')">
-                Close
-            </button>
-
-        </div>
-
-    </div>
+<!-- MAIN -->
+
+<div class="main-wrap">
+
+
+<!-- TABS -->
+
+<div class="tabs">
+
+<button
+class="tab active"
+onclick="switchTab('browse')"
+>
+🔍 Browse Items
+</button>
+
+<button
+class="tab"
+onclick="switchTab('lost')"
+>
+❗ Report Lost
+</button>
+
+<button
+class="tab"
+onclick="switchTab('found')"
+>
+📍 Report Found
+</button>
 
 </div>
 
 
-<!-- =======================================================
+<!-- =====================================================
+     BROWSE
+===================================================== -->
+
+<div
+class="section active"
+id="section-browse"
+>
+
+<div class="filters">
+
+<input
+type="text"
+id="searchInput"
+placeholder="🔎 Search items..."
+oninput="renderItems()"
+/>
+
+
+<select
+id="filterCat"
+onchange="renderItems()"
+>
+
+<option value="">
+All Categories
+</option>
+
+<option>
+Clothing
+</option>
+
+<option>
+Electronics
+</option>
+
+<option>
+Stationery
+</option>
+
+<option>
+Bag / backpack
+</option>
+
+<option>
+Sports gear
+</option>
+
+<option>
+Other
+</option>
+
+</select>
+
+
+<select
+id="filterStatus"
+onchange="renderItems()"
+>
+
+<option value="">
+All Status
+</option>
+
+<option value="lost">
+Lost
+</option>
+
+<option value="found">
+Found
+</option>
+
+<option value="claimed">
+Claimed
+</option>
+
+<option value="returned">
+Returned
+</option>
+
+</select>
+
+</div>
+
+
+<div
+class="items-grid"
+id="itemsGrid"
+>
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     LOST FORM
+===================================================== -->
+
+<div
+class="section"
+id="section-lost"
+>
+
+<div
+class="alert"
+id="lostAlert"
+>
+✓ Lost item posted successfully!
+</div>
+
+
+<div class="form-card">
+
+<div class="form-section-title">
+Your Account
+</div>
+
+
+<div class="user-confirmation">
+
+<div class="user-check">
+✓
+</div>
+
+<div>
+
+Posting as
+
+<strong id="lostLoggedUser">
+Student
+</strong>
+
+<br>
+
+Your name comes automatically from
+your school Microsoft account.
+
+</div>
+
+</div>
+
+
+<div class="form-row">
+
+<label>
+Full Name
+</label>
+
+<input
+type="text"
+id="lostName"
+class="locked-input"
+readonly
+/>
+
+</div>
+
+
+<div class="form-row">
+
+<label>
+Class / Grade
+</label>
+
+<input
+type="text"
+id="lostClass"
+placeholder="Example: 9-B"
+/>
+
+</div>
+
+
+<div class="form-section-title">
+Item Details
+</div>
+
+
+<div class="form-2col">
+
+<div class="form-row">
+
+<label>
+Item Name *
+</label>
+
+<input
+type="text"
+id="lostItem"
+placeholder="Example: Blue water bottle"
+/>
+
+</div>
+
+
+<div class="form-row">
+
+<label>
+Category
+</label>
+
+<select id="lostCat">
+
+<option>
+Clothing
+</option>
+
+<option>
+Electronics
+</option>
+
+<option>
+Stationery
+</option>
+
+<option>
+Bag / backpack
+</option>
+
+<option>
+Sports gear
+</option>
+
+<option>
+Other
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<div class="form-row">
+
+<label>
+Where did you lose it?
+</label>
+
+<input
+type="text"
+id="lostLocation"
+placeholder="Example: Basketball court"
+/>
+
+</div>
+
+
+<div class="form-row">
+
+<label>
+Description
+</label>
+
+<textarea
+id="lostDesc"
+placeholder="Colour, brand, markings, etc."
+></textarea>
+
+</div>
+
+
+<div class="form-row">
+
+<label>
+Photo
+</label>
+
+<div class="photo-upload">
+
+<input
+type="file"
+id="lostPhoto"
+accept="image/*"
+onchange="previewPhoto(this,'lostPhotoPreview')"
+/>
+
+<div
+class="photo-preview"
+id="lostPhotoPreview"
+>
+
+<img>
+
+</div>
+
+</div>
+
+</div>
+
+
+<button
+class="btn-submit"
+id="lostSubmitBtn"
+onclick="submitLost()"
+>
+Post Lost Item →
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     FOUND FORM
+===================================================== -->
+
+<div
+class="section"
+id="section-found"
+>
+
+<div
+class="alert"
+id="foundAlert"
+>
+✓ Found item posted successfully!
+</div>
+
+
+<div class="alert-note">
+
+📌 Please hand found items to the
+<strong>school office</strong>.
+
+</div>
+
+
+<div class="form-card">
+
+<div class="form-section-title">
+Your Account
+</div>
+
+
+<div class="user-confirmation">
+
+<div class="user-check">
+✓
+</div>
+
+<div>
+
+Posting as
+
+<strong id="foundLoggedUser">
+Student
+</strong>
+
+<br>
+
+Your name comes automatically from
+your school Microsoft account.
+
+</div>
+
+</div>
+
+
+<div class="form-row">
+
+<label>
+Full Name
+</label>
+
+<input
+type="text"
+id="foundName"
+class="locked-input"
+readonly
+/>
+
+</div>
+
+
+<div class="form-row">
+
+<label>
+Class / Grade
+</label>
+
+<input
+type="text"
+id="foundClass"
+placeholder="Example: 9-B"
+/>
+
+</div>
+
+
+<div class="form-section-title">
+Item Details
+</div>
+
+
+<div class="form-2col">
+
+<div class="form-row">
+
+<label>
+Item Name *
+</label>
+
+<input
+type="text"
+id="foundItem"
+placeholder="Example: Red umbrella"
+/>
+
+</div>
+
+
+<div class="form-row">
+
+<label>
+Category
+</label>
+
+<select id="foundCat">
+
+<option>
+Clothing
+</option>
+
+<option>
+Electronics
+</option>
+
+<option>
+Stationery
+</option>
+
+<option>
+Bag / backpack
+</option>
+
+<option>
+Sports gear
+</option>
+
+<option>
+Other
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<div class="form-row">
+
+<label>
+Where did you find it?
+</label>
+
+<input
+type="text"
+id="foundLocation"
+placeholder="Example: Library"
+/>
+
+</div>
+
+
+<div class="form-row">
+
+<label>
+Description
+</label>
+
+<textarea
+id="foundDesc"
+placeholder="Colour, brand, markings..."
+></textarea>
+
+</div>
+
+
+<div class="form-row">
+
+<label>
+Photo
+</label>
+
+<div class="photo-upload">
+
+<input
+type="file"
+id="foundPhoto"
+accept="image/*"
+onchange="previewPhoto(this,'foundPhotoPreview')"
+/>
+
+<div
+class="photo-preview"
+id="foundPhotoPreview"
+>
+
+<img>
+
+</div>
+
+</div>
+
+</div>
+
+
+<button
+class="btn-submit"
+id="foundSubmitBtn"
+onclick="submitFound()"
+>
+Post Found Item →
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
      CLAIM MODAL
-     ======================================================= -->
+===================================================== -->
 
 <div
-    class="modal-overlay"
-    id="claimModal"
-    onclick="overlayClose(event,'claimModal')">
+class="modal-overlay"
+id="claimModal"
+>
 
-    <div class="modal">
+<div class="modal">
 
-        <div class="modal-header">
+<h3>
+🙋 Claim This Item
+</h3>
 
-            <h3>🙋 Claim this item</h3>
-
-            <button
-                class="close-modal"
-                onclick="closeClaim()">
-                ×
-            </button>
-
-        </div>
-
-        <p
-            class="modal-sub"
-            id="claimDesc">
-        </p>
+<p
+class="modal-sub"
+id="claimDesc"
+>
+</p>
 
 
-        <div class="form-group">
+<div class="form-row">
 
-            <label>
-                Your full name <span class="required">*</span>
-            </label>
+<label>
+Your Name
+</label>
 
-            <input
-                id="claimName"
-                maxlength="80"
-                placeholder="Full name">
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>Class / Grade</label>
-
-            <input
-                id="claimClass"
-                maxlength="20"
-                placeholder="e.g. 8-C">
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>Why do you believe this is yours?</label>
-
-            <textarea
-                id="claimReason"
-                maxlength="300"
-                placeholder="Mention a unique identifying detail..."></textarea>
-
-        </div>
-
-
-        <div class="modal-actions">
-
-            <button
-                class="ghost-btn"
-                onclick="closeClaim()">
-                Cancel
-            </button>
-
-            <button
-                class="submit-btn"
-                id="claimSubmitBtn"
-                onclick="confirmClaim()">
-                Submit claim
-            </button>
-
-        </div>
-
-    </div>
+<input
+id="claimName"
+class="locked-input"
+readonly
+>
 
 </div>
 
 
-<!-- =======================================================
+<div class="form-row">
+
+<label>
+Class / Grade
+</label>
+
+<input
+id="claimClass"
+placeholder="Example: 8-C"
+>
+
+</div>
+
+
+<div class="modal-actions">
+
+<button
+class="btn-ghost"
+onclick="closeClaim()"
+>
+Cancel
+</button>
+
+<button
+class="btn-submit"
+style="width:auto"
+onclick="confirmClaim()"
+>
+Submit Claim
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
      RETURN MODAL
-     ======================================================= -->
+===================================================== -->
 
 <div
-    class="modal-overlay"
-    id="returnModal"
-    onclick="overlayClose(event,'returnModal')">
+class="modal-overlay"
+id="returnModal"
+>
 
-    <div class="modal">
+<div class="modal">
 
-        <div class="modal-header">
+<h3>
+🔄 Mark as Returned
+</h3>
 
-            <h3>🔄 Mark as returned</h3>
-
-            <button
-                class="close-modal"
-                onclick="closeReturn()">
-                ×
-            </button>
-
-        </div>
-
-        <p
-            class="modal-sub"
-            id="returnDesc">
-        </p>
+<p
+class="modal-sub"
+id="returnDesc"
+>
+</p>
 
 
-        <div class="form-group">
+<div class="form-row">
 
-            <label>
-                Your full name <span class="required">*</span>
-            </label>
+<label>
+Your Name
+</label>
 
-            <input
-                id="returnName"
-                maxlength="80"
-                placeholder="Full name">
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>Class / Grade</label>
-
-            <input
-                id="returnClass"
-                maxlength="20"
-                placeholder="e.g. 7-A">
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>How did you return it?</label>
-
-            <input
-                id="returnHow"
-                maxlength="150"
-                placeholder="Handed to owner directly">
-
-        </div>
-
-
-        <div class="modal-actions">
-
-            <button
-                class="ghost-btn"
-                onclick="closeReturn()">
-                Cancel
-            </button>
-
-            <button
-                class="submit-btn"
-                id="returnSubmitBtn"
-                onclick="confirmReturn()">
-                Confirm return
-            </button>
-
-        </div>
-
-    </div>
+<input
+id="returnName"
+class="locked-input"
+readonly
+>
 
 </div>
 
 
-<!-- =======================================================
-     IMAGE MODAL
-     ======================================================= -->
+<div class="form-row">
 
-<div
-    class="modal-overlay"
-    id="imageModal"
-    onclick="closeModal('imageModal')">
+<label>
+Class / Grade
+</label>
 
-    <div class="modal">
-
-        <div class="modal-header">
-
-            <h3>Item photo</h3>
-
-            <button
-                class="close-modal"
-                onclick="closeModal('imageModal')">
-                ×
-            </button>
-
-        </div>
-
-        <img
-            id="largeImage"
-            style="
-                width:100%;
-                max-height:65vh;
-                object-fit:contain;
-                border-radius:15px;
-            ">
-
-    </div>
+<input
+id="returnClass"
+placeholder="Example: 7-A"
+>
 
 </div>
 
 
-<!-- =======================================================
-     TOAST CONTAINER
-     ======================================================= -->
+<div class="form-row">
 
-<div
-    class="toast-container"
-    id="toastContainer">
+<label>
+How did you return it?
+</label>
+
+<input
+id="returnHow"
+placeholder="Example: Handed to owner"
+>
+
 </div>
 
 
-<!-- =======================================================
-     MOBILE NAV
-     ======================================================= -->
+<div class="modal-actions">
 
-<nav class="mobile-nav">
+<button
+class="btn-ghost"
+onclick="closeReturn()"
+>
+Cancel
+</button>
 
-    <button
-        id="mobileBrowse"
-        class="active"
-        onclick="switchTab('browse')">
+<button
+class="btn-submit"
+style="width:auto"
+onclick="confirmReturn()"
+>
+Confirm Return
+</button>
 
-        <span>🔍</span>
-        Browse
+</div>
 
-    </button>
+</div>
 
-    <button
-        id="mobileLost"
-        onclick="switchTab('lost')">
-
-        <span>❗</span>
-        Lost
-
-    </button>
-
-    <button
-        id="mobileFound"
-        onclick="switchTab('found')">
-
-        <span>📍</span>
-        Found
-
-    </button>
-
-</nav>
+</div>
 
 
-<!-- =======================================================
-     FOOTER
-     ======================================================= -->
+<!-- FOOTER -->
 
 <footer>
 
-    <strong>
-        <span class="footer-brand">KHAITAN</span>
-        Public School — Lost & Found Portal
-    </strong>
+<strong>
+Khaitan Public School — Lost & Found Portal
+</strong>
 
-    <br>
+<br>
 
-    Made by Trishar Saxena & Krishna Sharma
+Made by Trishar Saxena & Krishna Sharma
 
-    <br>
+<br>
 
-    For queries, please contact the school office.
+For queries, contact the school office
 
-    <br>
+<br>
 
-    Lost/Found items expire after 30 days.
-    Claimed/Returned items are permanently deleted after 10 days.
+Lost/Found items expire after 30 days.
+Claimed/Returned items expire after 10 days.
 
 </footer>
 
 
-<!-- =======================================================
+<div
+class="toast"
+id="toast"
+>
+</div>
+
+</div>
+
+
+<!-- =========================================================
      FIREBASE
-     ======================================================= -->
+========================================================= -->
 
 <script type="module">
 
 import {
     initializeApp
-} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+}
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
 
 import {
     getFirestore,
@@ -2920,12 +2473,23 @@ import {
     doc,
     query,
     orderBy
-} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+}
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    signInWithPopup,
+    OAuthProvider,
+    signOut
+}
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 
 /* =========================================================
    FIREBASE CONFIG
-   ========================================================= */
+========================================================= */
 
 const firebaseConfig = {
 
@@ -2949,339 +2513,448 @@ const firebaseConfig = {
 
     measurementId:
         "G-XC3RFHEJ13"
+
 };
 
 
 /* =========================================================
    INITIALIZE FIREBASE
-   ========================================================= */
+========================================================= */
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const app =
+    initializeApp(firebaseConfig);
+
+const db =
+    getFirestore(app);
+
+const auth =
+    getAuth(app);
 
 const itemsCollection =
     collection(db, "items");
 
 
 /* =========================================================
-   STATE
-   ========================================================= */
+   SCHOOL DOMAIN
+========================================================= */
+
+const SCHOOL_EMAIL_DOMAIN =
+    "khaitanpublicschool.com";
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
 
 let items = [];
 
+let currentUser = null;
+
 let claimingId = null;
+
 let returningId = null;
-
-let isSubmitting = false;
-
-let unsubscribeItems = null;
 
 
 /* =========================================================
-   CONSTANTS
-   ========================================================= */
-
-const DAY =
-    24 * 60 * 60 * 1000;
-
-const LOST_FOUND_EXPIRY =
-    30 * DAY;
-
-const CLAIMED_RETURNED_EXPIRY =
-    10 * DAY;
-
+   CATEGORY ICONS
+========================================================= */
 
 const CAT_EMOJI = {
 
-    "Clothing": "👕",
+    "Clothing":
+        "👕",
 
-    "Electronics": "💻",
+    "Electronics":
+        "💻",
 
-    "Stationery": "✏️",
+    "Stationery":
+        "✏️",
 
-    "Bag / backpack": "🎒",
+    "Bag / backpack":
+        "🎒",
 
-    "Sports gear": "⚽",
+    "Sports gear":
+        "⚽",
 
-    "Other": "📦"
+    "Other":
+        "📦"
 
 };
 
 
 /* =========================================================
-   UTILITY
-   ========================================================= */
+   ESCAPE HTML
+========================================================= */
 
 function escapeHTML(value) {
 
-    return String(value ?? "")
+    return String(value || "")
+
         .replace(/&/g, "&amp;")
+
         .replace(/</g, "&lt;")
+
         .replace(/>/g, "&gt;")
+
         .replace(/"/g, "&quot;")
+
         .replace(/'/g, "&#039;");
-}
 
-
-function getItemById(id) {
-
-    return items.find(
-        item => item.id === id
-    );
-
-}
-
-
-function formatDate(timestamp) {
-
-    if (!timestamp) {
-        return "Unknown date";
-    }
-
-    const date =
-        new Date(timestamp);
-
-    return date.toLocaleDateString(
-        "en-IN",
-        {
-            day: "numeric",
-            month: "short",
-            year: "numeric"
-        }
-    );
-}
-
-
-function getRemainingTime(expiresAt) {
-
-    if (!expiresAt) {
-        return "No expiry set";
-    }
-
-    const remaining =
-        expiresAt - Date.now();
-
-    if (remaining <= 0) {
-        return "Expiring...";
-    }
-
-    const days =
-        Math.floor(
-            remaining / DAY
-        );
-
-    const hours =
-        Math.floor(
-            (remaining % DAY) /
-            (60 * 60 * 1000)
-        );
-
-    const minutes =
-        Math.floor(
-            (remaining % (60 * 60 * 1000)) /
-            (60 * 1000)
-        );
-
-    const seconds =
-        Math.floor(
-            (remaining % (60 * 1000)) /
-            1000
-        );
-
-
-    if (days > 0) {
-
-        return `${days}d ${hours}h left`;
-
-    }
-
-    if (hours > 0) {
-
-        return `${hours}h ${minutes}m left`;
-
-    }
-
-    if (minutes > 0) {
-
-        return `${minutes}m ${seconds}s left`;
-
-    }
-
-    return `${seconds}s left`;
 }
 
 
 /* =========================================================
-   TOAST SYSTEM
-   ========================================================= */
+   TOAST
+========================================================= */
 
-function showToast(
-    title,
-    message,
-    type = "success"
-) {
-
-    const container =
-        document.getElementById(
-            "toastContainer"
-        );
+function showToast(message) {
 
     const toast =
-        document.createElement("div");
+        document.getElementById("toast");
 
-    let icon = "✓";
+    toast.textContent =
+        message;
 
-    if (type === "error") {
-        icon = "⚠️";
-    }
-
-    if (type === "info") {
-        icon = "ℹ️";
-    }
-
-    toast.className = "toast";
-
-    toast.innerHTML = `
-
-        <div class="toast-icon">
-            ${icon}
-        </div>
-
-        <div class="toast-content">
-
-            <div class="toast-title">
-                ${escapeHTML(title)}
-            </div>
-
-            <div class="toast-message">
-                ${escapeHTML(message)}
-            </div>
-
-        </div>
-
-        <button
-            class="toast-close"
-            aria-label="Close notification">
-            ×
-        </button>
-
-    `;
-
-
-    toast
-        .querySelector(".toast-close")
-        .onclick = () => {
-            toast.remove();
-        };
-
-
-    container.appendChild(toast);
-
+    toast.classList.add("show");
 
     setTimeout(() => {
 
-        if (toast.isConnected) {
-            toast.remove();
+        toast.classList.remove("show");
+
+    }, 3000);
+
+}
+
+
+/* =========================================================
+   MICROSOFT LOGIN
+========================================================= */
+
+document
+.getElementById("loginBtn")
+.addEventListener(
+    "click",
+    async () => {
+
+        const loading =
+            document.getElementById(
+                "loadingScreen"
+            );
+
+        loading.style.display =
+            "flex";
+
+
+        try {
+
+            const provider =
+                new OAuthProvider(
+                    "microsoft.com"
+                );
+
+
+            provider.setCustomParameters({
+                prompt:
+                    "select_account"
+            });
+
+
+            const result =
+                await signInWithPopup(
+                    auth,
+                    provider
+                );
+
+
+            const user =
+                result.user;
+
+
+            const email =
+                (
+                    user.email || ""
+                ).toLowerCase();
+
+
+            /* -----------------------------------------
+               SCHOOL EMAIL CHECK
+            ----------------------------------------- */
+
+            if (
+                !email.endsWith(
+                    "@" +
+                    SCHOOL_EMAIL_DOMAIN
+                )
+            ) {
+
+                await signOut(auth);
+
+
+                alert(
+                    "Access denied.\n\n" +
+                    "Please use your official " +
+                    "@khaitanpublicschool.com " +
+                    "school account."
+                );
+
+
+                loading.style.display =
+                    "none";
+
+                return;
+
+            }
+
+
+        } catch (error) {
+
+            console.error(
+                "Login error:",
+                error
+            );
+
+
+            alert(
+                "Login failed.\n\n" +
+                error.message
+            );
+
+
+            loading.style.display =
+                "none";
+
         }
 
-    }, 5000);
-
-}
-
-
-/* =========================================================
-   NAVIGATION
-   ========================================================= */
-
-window.switchTab = function(tabName) {
-
-    document
-        .querySelectorAll(".tab")
-        .forEach(button => {
-
-            button.classList.toggle(
-                "active",
-                button.dataset.tab === tabName
-            );
-
-        });
-
-
-    document
-        .querySelectorAll(".section")
-        .forEach(section => {
-
-            section.classList.toggle(
-                "active",
-                section.id ===
-                `section-${tabName}`
-            );
-
-        });
-
-
-    document
-        .querySelectorAll(".mobile-nav button")
-        .forEach(button => {
-            button.classList.remove("active");
-        });
-
-
-    const mobileButton =
-        document.getElementById(
-            `mobile${capitalize(tabName)}`
-        );
-
-    if (mobileButton) {
-        mobileButton.classList.add("active");
     }
-
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-};
-
-
-function capitalize(value) {
-
-    return value.charAt(0).toUpperCase() +
-           value.slice(1);
-
-}
+);
 
 
 /* =========================================================
-   FIRESTORE REAL-TIME LOADING
-   ========================================================= */
+   AUTH STATE
+========================================================= */
+
+onAuthStateChanged(
+    auth,
+    user => {
+
+        const authScreen =
+            document.getElementById(
+                "authScreen"
+            );
+
+        const appElement =
+            document.getElementById(
+                "app"
+            );
+
+        const loading =
+            document.getElementById(
+                "loadingScreen"
+            );
+
+
+        if (user) {
+
+            const email =
+                (
+                    user.email || ""
+                ).toLowerCase();
+
+
+            /* -----------------------------------------
+               SECOND SCHOOL-DOMAIN CHECK
+            ----------------------------------------- */
+
+            if (
+                !email.endsWith(
+                    "@" +
+                    SCHOOL_EMAIL_DOMAIN
+                )
+            ) {
+
+                signOut(auth);
+
+                return;
+
+            }
+
+
+            currentUser =
+                user;
+
+
+            const displayName =
+                user.displayName ||
+                email.split("@")[0] ||
+                "Student";
+
+
+            /* -----------------------------------------
+               HEADER
+            ----------------------------------------- */
+
+            document.getElementById(
+                "headerUserName"
+            ).textContent =
+                displayName;
+
+
+            document.getElementById(
+                "headerUserEmail"
+            ).textContent =
+                user.email;
+
+
+            /* -----------------------------------------
+               LOST FORM
+            ----------------------------------------- */
+
+            document.getElementById(
+                "lostName"
+            ).value =
+                displayName;
+
+
+            document.getElementById(
+                "lostLoggedUser"
+            ).textContent =
+                displayName;
+
+
+            /* -----------------------------------------
+               FOUND FORM
+            ----------------------------------------- */
+
+            document.getElementById(
+                "foundName"
+            ).value =
+                displayName;
+
+
+            document.getElementById(
+                "foundLoggedUser"
+            ).textContent =
+                displayName;
+
+
+            /* -----------------------------------------
+               CLAIM
+            ----------------------------------------- */
+
+            document.getElementById(
+                "claimName"
+            ).value =
+                displayName;
+
+
+            /* -----------------------------------------
+               RETURN
+            ----------------------------------------- */
+
+            document.getElementById(
+                "returnName"
+            ).value =
+                displayName;
+
+
+            authScreen.style.display =
+                "none";
+
+
+            loading.style.display =
+                "none";
+
+
+            appElement.style.display =
+                "block";
+
+
+            loadFirestoreItems();
+
+        }
+
+        else {
+
+            currentUser =
+                null;
+
+
+            appElement.style.display =
+                "none";
+
+
+            authScreen.style.display =
+                "flex";
+
+
+            loading.style.display =
+                "none";
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+document
+.getElementById("logoutBtn")
+.addEventListener(
+    "click",
+    async () => {
+
+        try {
+
+            await signOut(auth);
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   LOAD FIRESTORE
+========================================================= */
 
 function loadFirestoreItems() {
 
     const q =
         query(
             itemsCollection,
-            orderBy("createdAt", "desc")
+            orderBy(
+                "createdAt",
+                "desc"
+            )
         );
 
 
-    unsubscribeItems =
-        onSnapshot(
+    onSnapshot(
+        q,
 
-            q,
+        async snapshot => {
 
-            async snapshot => {
+            items = [];
 
-                const activeItems = [];
+            const deletionPromises =
+                [];
 
-                const expiredItems = [];
 
-
-                snapshot.forEach(firebaseDoc => {
+            snapshot.forEach(
+                firebaseDoc => {
 
                     const data =
                         firebaseDoc.data();
+
 
                     const item = {
 
@@ -3293,226 +2966,222 @@ function loadFirestoreItems() {
                     };
 
 
+                    /* ---------------------------------
+                       EXPIRY
+                    --------------------------------- */
+
                     if (
                         item.expiresAt &&
                         Date.now() >=
                         item.expiresAt
                     ) {
 
-                        expiredItems.push(item);
-
-                    } else {
-
-                        activeItems.push(item);
-
-                    }
-
-                });
-
-
-                items = activeItems;
-
-                updateStats();
-
-                renderItems();
-
-
-                if (expiredItems.length) {
-
-                    for (
-                        const item
-                        of expiredItems
-                    ) {
-
-                        try {
-
-                            await deleteDoc(
+                        deletionPromises.push(
+                            deleteDoc(
                                 doc(
                                     db,
                                     "items",
-                                    item.id
+                                    firebaseDoc.id
                                 )
-                            );
+                            )
+                        );
 
-                        } catch(error) {
+                    }
 
-                            console.error(
-                                "Automatic expiry delete failed:",
-                                error
-                            );
+                    else {
 
-                        }
+                        items.push(item);
 
                     }
 
                 }
-
-            },
-
-            error => {
-
-                console.error(
-                    "Firestore listener error:",
-                    error
-                );
+            );
 
 
-                document
-                    .getElementById("itemsGrid")
-                    .innerHTML = `
+            if (
+                deletionPromises.length
+            ) {
 
-                    <div class="empty-state">
+                try {
 
-                        <div class="empty-icon">
-                            ⚠️
-                        </div>
+                    await Promise.all(
+                        deletionPromises
+                    );
 
-                        <h3>
-                            Could not load items
-                        </h3>
+                }
 
-                        <p>
-                            Please refresh the page
-                            and try again.
-                        </p>
+                catch (error) {
 
-                    </div>
+                    console.error(
+                        "Delete error:",
+                        error
+                    );
 
-                    `;
-
-
-                showToast(
-                    "Connection problem",
-                    "The portal could not connect to the database.",
-                    "error"
-                );
+                }
 
             }
 
-        );
+
+            updateStats();
+
+            renderItems();
+
+        },
+
+        error => {
+
+            console.error(
+                "Firestore error:",
+                error
+            );
+
+
+            showToast(
+                "Unable to load items."
+            );
+
+        }
+    );
 
 }
 
 
 /* =========================================================
-   STATISTICS
-   ========================================================= */
+   STATS
+========================================================= */
 
 function updateStats() {
 
-    const lost =
+    document.getElementById(
+        "statLost"
+    ).textContent =
         items.filter(
-            item => item.status === "lost"
+            item =>
+                item.status === "lost"
         ).length;
 
 
-    const found =
+    document.getElementById(
+        "statFound"
+    ).textContent =
         items.filter(
-            item => item.status === "found"
+            item =>
+                item.status === "found"
         ).length;
 
 
-    const claimed =
+    document.getElementById(
+        "statClaimed"
+    ).textContent =
         items.filter(
-            item => item.status === "claimed"
+            item =>
+                item.status === "claimed"
         ).length;
 
 
-    const returned =
+    document.getElementById(
+        "statReturned"
+    ).textContent =
         items.filter(
-            item => item.status === "returned"
+            item =>
+                item.status === "returned"
         ).length;
-
-
-    animateNumber(
-        "statLost",
-        lost
-    );
-
-    animateNumber(
-        "statFound",
-        found
-    );
-
-    animateNumber(
-        "statClaimed",
-        claimed
-    );
-
-    animateNumber(
-        "statReturned",
-        returned
-    );
 
 }
 
 
-function animateNumber(
-    elementId,
-    target
+/* =========================================================
+   REMAINING TIME
+========================================================= */
+
+function getRemainingTime(
+    expiresAt
 ) {
 
-    const element =
-        document.getElementById(elementId);
-
-    if (!element) return;
-
-    const current =
-        parseInt(element.textContent) || 0;
+    if (!expiresAt)
+        return "No expiry set";
 
 
-    if (current === target) return;
+    const remaining =
+        expiresAt - Date.now();
 
 
-    const startTime =
-        performance.now();
-
-    const duration = 350;
+    if (remaining <= 0)
+        return "Deleting...";
 
 
-    function animate(now) {
+    const days =
+        Math.floor(
+            remaining /
+            (1000 * 60 * 60 * 24)
+        );
 
-        const progress =
-            Math.min(
-                (now - startTime) /
-                duration,
-                1
+
+    const hours =
+        Math.floor(
+            (
+                remaining %
+                (1000 * 60 * 60 * 24)
+            ) /
+            (1000 * 60 * 60)
+        );
+
+
+    const minutes =
+        Math.floor(
+            (
+                remaining %
+                (1000 * 60 * 60)
+            ) /
+            (1000 * 60)
+        );
+
+
+    if (days > 0)
+        return `${days}d ${hours}h ${minutes}m`;
+
+
+    if (hours > 0)
+        return `${hours}h ${minutes}m`;
+
+
+    return `${minutes}m`;
+
+}
+
+
+/* =========================================================
+   UPDATE TIMERS
+========================================================= */
+
+function updateTimers() {
+
+    items.forEach(item => {
+
+        const element =
+            document.getElementById(
+                "timer-" + item.id
             );
 
 
-        const value =
-            Math.round(
-                current +
-                (target - current) *
-                progress
-            );
+        if (element) {
 
-
-        element.textContent =
-            value;
-
-
-        if (progress < 1) {
-
-            requestAnimationFrame(
-                animate
-            );
+            element.textContent =
+                "⏳ Deletes in: " +
+                getRemainingTime(
+                    item.expiresAt
+                );
 
         }
 
-    }
-
-
-    requestAnimationFrame(
-        animate
-    );
+    });
 
 }
 
 
 /* =========================================================
    RENDER ITEMS
-   ========================================================= */
+========================================================= */
 
 function renderItems() {
 
@@ -3522,136 +3191,78 @@ function renderItems() {
         );
 
 
-    if (!grid) return;
-
-
     const search =
-        document
-            .getElementById("searchInput")
-            .value
-            .trim()
-            .toLowerCase();
+        document.getElementById(
+            "searchInput"
+        )
+        .value
+        .trim()
+        .toLowerCase();
 
 
     const category =
-        document
-            .getElementById("filterCat")
-            .value;
+        document.getElementById(
+            "filterCat"
+        ).value;
 
 
     const status =
-        document
-            .getElementById("filterStatus")
-            .value;
+        document.getElementById(
+            "filterStatus"
+        ).value;
 
 
-    const sort =
-        document
-            .getElementById("sortItems")
-            .value;
-
-
-    let filtered =
+    const filtered =
         items.filter(item => {
 
-            const searchable = [
-
-                item.name,
-                item.desc,
-                item.location,
-                item.cat,
-                item.reporter
-
-            ]
-                .filter(Boolean)
-                .join(" ")
+            const text =
+                (
+                    item.name +
+                    " " +
+                    item.desc +
+                    " " +
+                    item.location
+                )
                 .toLowerCase();
 
 
             return (
 
                 (!search ||
-                 searchable.includes(search))
+                    text.includes(search))
 
                 &&
 
                 (!category ||
-                 item.cat === category)
+                    item.cat === category)
 
                 &&
 
                 (!status ||
-                 item.status === status)
+                    item.status === status)
 
             );
 
         });
 
 
-    /* SORT */
-
-    if (sort === "newest") {
-
-        filtered.sort(
-            (a,b) =>
-                (b.createdAt || 0) -
-                (a.createdAt || 0)
-        );
-
-    }
-
-
-    if (sort === "oldest") {
-
-        filtered.sort(
-            (a,b) =>
-                (a.createdAt || 0) -
-                (b.createdAt || 0)
-        );
-
-    }
-
-
-    if (sort === "name") {
-
-        filtered.sort(
-            (a,b) =>
-                String(a.name || "")
-                    .localeCompare(
-                        String(b.name || "")
-                    )
-        );
-
-    }
-
-
-    document
-        .getElementById("resultCount")
-        .textContent =
-            `${filtered.length} ${
-                filtered.length === 1
-                    ? "item"
-                    : "items"
-            }`;
-
-
     if (!filtered.length) {
 
         grid.innerHTML = `
 
-            <div class="empty-state">
+            <div class="empty">
 
                 <div class="empty-icon">
                     🔎
                 </div>
 
                 <h3>
-                    No matching items
+                    No items found
                 </h3>
 
                 <p>
-                    Try changing your search,
-                    category or status filter.
+                    Try changing your search
+                    or filters.
                 </p>
 
             </div>
@@ -3664,9 +3275,182 @@ function renderItems() {
 
 
     grid.innerHTML =
-        filtered
-            .map(renderItemCard)
-            .join("");
+        filtered.map(item => {
+
+            const photo =
+                item.photo
+                ?
+                `
+                <img
+                    class="item-photo"
+                    src="${escapeHTML(item.photo)}"
+                    alt="Item photo"
+                >
+                `
+                :
+                "";
+
+
+            return `
+
+            <div class="item-card">
+
+                <div class="item-left">
+
+                    <div class="item-icon">
+
+                        ${
+                            CAT_EMOJI[
+                                item.cat
+                            ] || "📦"
+                        }
+
+                    </div>
+
+
+                    <div class="item-content">
+
+                        <div class="item-name">
+
+                            ${escapeHTML(
+                                item.name
+                            )}
+
+                        </div>
+
+
+                        <div class="item-meta">
+
+                            📍
+
+                            <strong>
+                                ${escapeHTML(
+                                    item.location ||
+                                    "Campus"
+                                )}
+                            </strong>
+
+                            ·
+
+                            ${escapeHTML(
+                                item.date || ""
+                            )}
+
+                        </div>
+
+
+                        ${
+                            item.desc
+                            ?
+                            `
+                            <div
+                                class="item-description"
+                            >
+
+                                ${escapeHTML(
+                                    item.desc
+                                )}
+
+                            </div>
+                            `
+                            :
+                            ""
+                        }
+
+
+                        <div class="item-meta">
+
+                            Reported by
+
+                            <strong>
+                                ${escapeHTML(
+                                    item.reporter
+                                )}
+                            </strong>
+
+                            ·
+
+                            ${escapeHTML(
+                                item.cls ||
+                                "N/A"
+                            )}
+
+                        </div>
+
+
+                        <span
+                            class="badge badge-${escapeHTML(
+                                item.status
+                            )}"
+                        >
+
+                            ${escapeHTML(
+                                item.status
+                            )}
+
+                        </span>
+
+
+                        <div
+                            class="timer"
+                            id="timer-${item.id}"
+                        >
+
+                            ⏳ Deletes in:
+                            ${getRemainingTime(
+                                item.expiresAt
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+                    ${photo}
+
+                </div>
+
+
+                <div class="item-actions">
+
+                    ${
+                        item.status === "found"
+                        ?
+                        `
+                        <button
+                            class="claim-btn"
+                            onclick="openClaim('${item.id}')"
+                        >
+                            Claim →
+                        </button>
+                        `
+                        :
+                        ""
+                    }
+
+
+                    ${
+                        item.status === "lost"
+                        ?
+                        `
+                        <button
+                            class="return-btn"
+                            onclick="openReturn('${item.id}')"
+                        >
+                            Return ↩
+                        </button>
+                        `
+                        :
+                        ""
+                    }
+
+                </div>
+
+            </div>
+
+            `;
+
+        }).join("");
 
 
     updateTimers();
@@ -3675,313 +3459,171 @@ function renderItems() {
 
 
 /* =========================================================
-   ITEM CARD
-   ========================================================= */
-
-function renderItemCard(item) {
-
-    const emoji =
-        CAT_EMOJI[item.cat] || "📦";
-
-
-    const visual =
-        item.photo
-
-            ?
-
-            `
-            <div class="item-visual">
-
-                <img
-                    src="${escapeHTML(item.photo)}"
-                    alt="${escapeHTML(item.name)} photo"
-                    onclick="openImage('${item.id}')">
-
-            </div>
-            `
-
-            :
-
-            `
-            <div class="item-visual">
-
-                <div class="item-emoji">
-                    ${emoji}
-                </div>
-
-            </div>
-            `;
-
-
-    const description =
-        item.desc ||
-        "No additional description provided.";
-
-
-    const statusBadge = `
-
-        <span
-            class="badge badge-${escapeHTML(item.status)}">
-
-            ${escapeHTML(item.status)}
-
-        </span>
-
-    `;
-
-
-    let actionButtons = `
-
-        <button
-            class="action-btn view-btn"
-            onclick="openDetails('${item.id}')">
-
-            View details
-
-        </button>
-
-    `;
-
-
-    if (item.status === "found") {
-
-        actionButtons += `
-
-            <button
-                class="action-btn claim-btn"
-                onclick="openClaim('${item.id}')">
-
-                Claim →
-
-            </button>
-
-        `;
-
-    }
-
-
-    if (item.status === "lost") {
-
-        actionButtons += `
-
-            <button
-                class="action-btn return-btn"
-                onclick="openReturn('${item.id}')">
-
-                Return ↩
-
-            </button>
-
-        `;
-
-    }
-
-
-    return `
-
-        <article class="item-card">
-
-            ${visual}
-
-
-            <div class="item-body">
-
-                <div class="item-topline">
-
-                    <div class="item-name">
-                        ${escapeHTML(item.name)}
-                    </div>
-
-                    ${statusBadge}
-
-                </div>
-
-
-                <div class="item-meta">
-
-                    📍
-                    <strong>
-                        ${escapeHTML(
-                            item.location ||
-                            "Campus"
-                        )}
-                    </strong>
-
-                    ·
-
-                    ${formatDate(item.createdAt)}
-
-                </div>
-
-
-                <div class="item-description">
-
-                    ${escapeHTML(description)}
-
-                </div>
-
-
-                <div class="item-meta"
-                     style="margin-top:5px">
-
-                    Reported by
-                    <strong>
-                        ${escapeHTML(
-                            item.reporter ||
-                            "Unknown"
-                        )}
-                    </strong>
-
-                    ·
-
-                    ${escapeHTML(
-                        item.cls ||
-                        "N/A"
-                    )}
-
-                </div>
-
-
-                <div class="item-bottom">
-
-                    <span class="timer"
-                          id="timer-${item.id}">
-
-                        ⏳
-                        ${getRemainingTime(
-                            item.expiresAt
-                        )}
-
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="item-actions">
-
-                ${actionButtons}
-
-            </div>
-
-        </article>
-
-    `;
-
-}
-
-
-/* =========================================================
-   TIMERS
-   ========================================================= */
-
-async function updateTimers() {
-
-    const now =
-        Date.now();
-
-
-    const expired =
-        items.filter(
-            item =>
-                item.expiresAt &&
-                now >= item.expiresAt
-        );
-
-
-    for (
-        const item
-        of expired
-    ) {
-
-        try {
-
-            await deleteDoc(
-                doc(
-                    db,
-                    "items",
-                    item.id
-                )
-            );
-
-        } catch(error) {
-
-            console.error(
-                "Expiry delete error:",
-                error
+   SWITCH TAB
+========================================================= */
+
+window.switchTab =
+function(tabName) {
+
+    document
+    .querySelectorAll(".tab")
+    .forEach(
+        tab =>
+            tab.classList.remove(
+                "active"
+            )
+    );
+
+
+    document
+    .querySelectorAll(".section")
+    .forEach(
+        section =>
+            section.classList.remove(
+                "active"
+            )
+    );
+
+
+    document
+    .querySelectorAll(".tab")
+    .forEach(button => {
+
+        const onclick =
+            button.getAttribute(
+                "onclick"
+            ) || "";
+
+
+        if (
+            onclick.includes(
+                tabName
+            )
+        ) {
+
+            button.classList.add(
+                "active"
             );
 
         }
 
-    }
-
-
-    items.forEach(item => {
-
-        const element =
-            document.getElementById(
-                `timer-${item.id}`
-            );
-
-
-        if (!element) return;
-
-
-        element.textContent =
-            "⏳ " +
-            getRemainingTime(
-                item.expiresAt
-            );
-
     });
 
-}
-
-
-/* =========================================================
-   QUICK CATEGORY FILTER
-   ========================================================= */
-
-window.quickCategory =
-function(category) {
 
     document
-        .getElementById("filterCat")
-        .value = category;
-
-
-    document
-        .querySelectorAll(".quick-filter")
-        .forEach(button => {
-
-            button.classList.toggle(
-                "active",
-                button.dataset.category ===
-                category
-            );
-
-        });
-
-
-    renderItems();
+    .getElementById(
+        "section-" +
+        tabName
+    )
+    .classList.add(
+        "active"
+    );
 
 };
 
 
 /* =========================================================
-   IMAGE PROCESSING
-   ========================================================= */
+   PHOTO PREVIEW
+========================================================= */
 
-function compressImage(
-    file,
-    maxWidth = 1000,
-    maxHeight = 1000,
-    quality = .72
-) {
+window.previewPhoto =
+function(input, previewId) {
+
+    const preview =
+        document.getElementById(
+            previewId
+        );
+
+
+    const image =
+        preview.querySelector(
+            "img"
+        );
+
+
+    if (
+        !input.files ||
+        !input.files[0]
+    ) {
+
+        preview.classList.remove(
+            "show"
+        );
+
+        return;
+
+    }
+
+
+    const file =
+        input.files[0];
+
+
+    if (
+        !file.type.startsWith(
+            "image/"
+        )
+    ) {
+
+        alert(
+            "Please select an image."
+        );
+
+        input.value = "";
+
+        return;
+
+    }
+
+
+    if (
+        file.size >
+        5 * 1024 * 1024
+    ) {
+
+        alert(
+            "Please choose an image smaller than 5 MB."
+        );
+
+        input.value = "";
+
+        return;
+
+    }
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload =
+        event => {
+
+            image.src =
+                event.target.result;
+
+            preview.classList.add(
+                "show"
+            );
+
+        };
+
+
+    reader.readAsDataURL(
+        file
+    );
+
+};
+
+
+/* =========================================================
+   GET PHOTO DATA
+========================================================= */
+
+function getPhotoData(file) {
 
     return new Promise(
-        (resolve, reject) => {
+        (resolve,reject) => {
 
             if (!file) {
 
@@ -3992,146 +3634,24 @@ function compressImage(
             }
 
 
-            if (!file.type.startsWith("image/")) {
-
-                reject(
-                    new Error(
-                        "Selected file is not an image."
-                    )
-                );
-
-                return;
-
-            }
-
-
             const reader =
                 new FileReader();
 
 
             reader.onload =
-                event => {
-
-                    const image =
-                        new Image();
-
-
-                    image.onload =
-                        () => {
-
-                            let width =
-                                image.width;
-
-                            let height =
-                                image.height;
-
-
-                            const scale =
-                                Math.min(
-                                    1,
-                                    maxWidth /
-                                        width,
-                                    maxHeight /
-                                        height
-                                );
-
-
-                            width =
-                                Math.round(
-                                    width * scale
-                                );
-
-                            height =
-                                Math.round(
-                                    height * scale
-                                );
-
-
-                            const canvas =
-                                document.createElement(
-                                    "canvas"
-                                );
-
-
-                            canvas.width =
-                                width;
-
-                            canvas.height =
-                                height;
-
-
-                            const context =
-                                canvas.getContext(
-                                    "2d"
-                                );
-
-
-                            context.drawImage(
-                                image,
-                                0,
-                                0,
-                                width,
-                                height
-                            );
-
-
-                            const output =
-                                canvas.toDataURL(
-                                    "image/jpeg",
-                                    quality
-                                );
-
-
-                            /*
-                             * Firestore documents have
-                             * a size limit, so keep images
-                             * reasonably small.
-                             */
-
-                            if (
-                                output.length >
-                                750000
-                            ) {
-
-                                resolve(
-                                    canvas.toDataURL(
-                                        "image/jpeg",
-                                        .55
-                                    )
-                                );
-
-                            } else {
-
-                                resolve(output);
-
-                            }
-
-                        };
-
-
-                    image.onerror =
-                        () => reject(
-                            new Error(
-                                "Could not process image."
-                            )
-                        );
-
-
-                    image.src =
-                        event.target.result;
-
-                };
+                event =>
+                    resolve(
+                        event.target.result
+                    );
 
 
             reader.onerror =
-                () => reject(
-                    new Error(
-                        "Could not read image."
-                    )
-                );
+                reject;
 
 
-            reader.readAsDataURL(file);
+            reader.readAsDataURL(
+                file
+            );
 
         }
     );
@@ -4140,543 +3660,113 @@ function compressImage(
 
 
 /* =========================================================
-   PHOTO PREVIEW
-   ========================================================= */
+   SUBMIT LOST
+========================================================= */
 
-function setupPhotoPreview(
-    inputId,
-    previewId
-) {
+window.submitLost =
+async function() {
 
-    const input =
-        document.getElementById(inputId);
+    if (!currentUser) {
 
-    const preview =
-        document.getElementById(previewId);
+        alert(
+            "Please sign in first."
+        );
 
-    const image =
-        preview.querySelector("img");
-
-
-    input.addEventListener(
-        "change",
-        () => {
-
-            const file =
-                input.files[0];
-
-
-            if (!file) {
-
-                preview.classList.remove(
-                    "show"
-                );
-
-                return;
-
-            }
-
-
-            if (!file.type.startsWith("image/")) {
-
-                input.value = "";
-
-                showToast(
-                    "Invalid file",
-                    "Please choose an image.",
-                    "error"
-                );
-
-                return;
-
-            }
-
-
-            if (
-                file.size >
-                8 * 1024 * 1024
-            ) {
-
-                input.value = "";
-
-                showToast(
-                    "Image is too large",
-                    "Please choose an image under 8 MB.",
-                    "error"
-                );
-
-                return;
-
-            }
-
-
-            const reader =
-                new FileReader();
-
-
-            reader.onload =
-                event => {
-
-                    image.src =
-                        event.target.result;
-
-                    preview.classList.add(
-                        "show"
-                    );
-
-                };
-
-
-            reader.readAsDataURL(file);
-
-        }
-    );
-
-}
-
-
-window.removePhoto =
-function(inputId, previewId) {
-
-    document
-        .getElementById(inputId)
-        .value = "";
-
-    document
-        .getElementById(previewId)
-        .classList.remove("show");
-
-};
-
-
-/* =========================================================
-   IMAGE OPEN
-   ========================================================= */
-
-window.openImage =
-function(id) {
-
-    const item =
-        getItemById(id);
-
-
-    if (!item || !item.photo) {
         return;
+
     }
 
 
-    document
-        .getElementById("largeImage")
-        .src = item.photo;
+    const email =
+        (
+            currentUser.email ||
+            ""
+        ).toLowerCase();
+
+
+    if (
+        !email.endsWith(
+            "@" +
+            SCHOOL_EMAIL_DOMAIN
+        )
+    ) {
+
+        alert(
+            "Only school accounts are allowed."
+        );
 
-
-    document
-        .getElementById("imageModal")
-        .classList.add("open");
-
-};
-
-
-/* =========================================================
-   DETAIL MODAL
-   ========================================================= */
-
-window.openDetails =
-function(id) {
-
-    const item =
-        getItemById(id);
-
-
-    if (!item) return;
-
-
-    document
-        .getElementById("detailTitle")
-        .textContent =
-            item.name ||
-            "Item details";
-
-
-    const visual =
-        item.photo
-
-            ?
-
-            `
-            <img
-                class="detail-image"
-                src="${escapeHTML(item.photo)}"
-                alt="Item photo">
-            `
-
-            :
-
-            `
-            <div class="detail-placeholder">
-
-                ${CAT_EMOJI[item.cat] || "📦"}
-
-            </div>
-            `;
-
-
-    document
-        .getElementById("detailContent")
-        .innerHTML = `
-
-            ${visual}
-
-            <div style="margin-bottom:15px">
-
-                <span
-                    class="badge badge-${escapeHTML(
-                        item.status
-                    )}">
-
-                    ${escapeHTML(item.status)}
-
-                </span>
-
-            </div>
-
-
-            <div class="detail-grid">
-
-                <div class="detail-box">
-
-                    <div class="detail-label">
-                        Category
-                    </div>
-
-                    <div class="detail-value">
-                        ${escapeHTML(
-                            item.cat ||
-                            "Other"
-                        )}
-                    </div>
-
-                </div>
-
-
-                <div class="detail-box">
-
-                    <div class="detail-label">
-                        Location
-                    </div>
-
-                    <div class="detail-value">
-                        ${escapeHTML(
-                            item.location ||
-                            "Campus"
-                        )}
-                    </div>
-
-                </div>
-
-
-                <div class="detail-box">
-
-                    <div class="detail-label">
-                        Reported by
-                    </div>
-
-                    <div class="detail-value">
-                        ${escapeHTML(
-                            item.reporter ||
-                            "Unknown"
-                        )}
-                    </div>
-
-                </div>
-
-
-                <div class="detail-box">
-
-                    <div class="detail-label">
-                        Class
-                    </div>
-
-                    <div class="detail-value">
-                        ${escapeHTML(
-                            item.cls ||
-                            "N/A"
-                        )}
-                    </div>
-
-                </div>
-
-
-                <div class="detail-box">
-
-                    <div class="detail-label">
-                        Reported
-                    </div>
-
-                    <div class="detail-value">
-                        ${formatDate(
-                            item.createdAt
-                        )}
-                    </div>
-
-                </div>
-
-
-                <div class="detail-box">
-
-                    <div class="detail-label">
-                        Expires
-                    </div>
-
-                    <div class="detail-value">
-                        ${getRemainingTime(
-                            item.expiresAt
-                        )}
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div
-                style="
-                    margin-top:12px;
-                    padding:14px;
-                    background:#f7fafa;
-                    border-radius:12px;
-                    border:1px solid var(--border);
-                ">
-
-                <div class="detail-label">
-                    Description
-                </div>
-
-                <div
-                    style="
-                        margin-top:6px;
-                        color:var(--text-soft);
-                        font-size:12px;
-                        line-height:1.6;
-                    ">
-
-                    ${escapeHTML(
-                        item.desc ||
-                        "No description provided."
-                    )}
-
-                </div>
-
-            </div>
-
-        `;
-
-
-    document
-        .getElementById("detailModal")
-        .classList.add("open");
-
-};
-
-
-/* =========================================================
-   GENERATE ITEM DATA
-   ========================================================= */
-
-async function createItem(
-    type
-) {
-
-    if (isSubmitting) {
         return;
+
     }
-
-
-    const prefix =
-        type === "lost"
-            ? "lost"
-            : "found";
 
 
     const name =
-        document
-            .getElementById(`${prefix}Name`)
-            .value
-            .trim();
+        currentUser.displayName ||
+        currentUser.email;
 
 
     const cls =
-        document
-            .getElementById(`${prefix}Class`)
-            .value
-            .trim();
+        document.getElementById(
+            "lostClass"
+        ).value.trim();
 
 
-    const itemName =
-        document
-            .getElementById(`${prefix}Item`)
-            .value
-            .trim();
+    const item =
+        document.getElementById(
+            "lostItem"
+        ).value.trim();
 
 
     const cat =
-        document
-            .getElementById(`${prefix}Cat`)
-            .value;
+        document.getElementById(
+            "lostCat"
+        ).value;
 
 
     const location =
-        document
-            .getElementById(`${prefix}Location`)
-            .value
-            .trim();
+        document.getElementById(
+            "lostLocation"
+        ).value.trim();
 
 
     const desc =
-        document
-            .getElementById(`${prefix}Desc`)
-            .value
-            .trim();
+        document.getElementById(
+            "lostDesc"
+        ).value.trim();
 
 
     const photoInput =
-        document
-            .getElementById(`${prefix}Photo`);
-
-
-    if (!name) {
-
-        showToast(
-            "Name required",
-            "Please enter your full name.",
-            "error"
+        document.getElementById(
+            "lostPhoto"
         );
 
-        document
-            .getElementById(`${prefix}Name`)
-            .focus();
+
+    if (!item) {
+
+        alert(
+            "Please enter the item name."
+        );
 
         return;
 
     }
-
-
-    if (!itemName) {
-
-        showToast(
-            "Item name required",
-            "Please enter the name of the item.",
-            "error"
-        );
-
-        document
-            .getElementById(`${prefix}Item`)
-            .focus();
-
-        return;
-
-    }
-
-
-    /*
-     * Prevent accidental duplicate submissions
-     */
-
-    isSubmitting = true;
 
 
     const button =
-        document
-            .getElementById(
-                `${prefix}SubmitBtn`
-            );
+        document.getElementById(
+            "lostSubmitBtn"
+        );
 
 
     button.disabled = true;
 
 
-    const originalText =
-        button.innerHTML;
-
-
-    button.innerHTML =
-        `<span class="spinner"
-                style="
-                    width:15px;
-                    height:15px;
-                    border-width:2px;
-                "></span>
-         Posting...`;
-
-
     try {
 
-        const file =
-            photoInput.files[0];
-
-
         const photo =
-            file
-                ? await compressImage(file)
-                : "";
-
-
-        /*
-         * Duplicate protection:
-         * prevent the exact same report
-         * from being posted repeatedly
-         * within a short period.
-         */
-
-        const duplicate =
-            items.some(existing => {
-
-                const sameName =
-                    String(
-                        existing.name || ""
-                    )
-                    .toLowerCase()
-                    ===
-                    itemName.toLowerCase();
-
-
-                const sameReporter =
-                    String(
-                        existing.reporter || ""
-                    )
-                    .toLowerCase()
-                    ===
-                    name.toLowerCase();
-
-
-                const sameType =
-                    existing.status === type;
-
-
-                const recent =
-                    Date.now() -
-                    (existing.createdAt || 0)
-                    <
-                    5 * 60 * 1000;
-
-
-                return (
-                    sameName &&
-                    sameReporter &&
-                    sameType &&
-                    recent
-                );
-
-            });
-
-
-        if (duplicate) {
-
-            throw new Error(
-                "You already posted this item recently."
+            await getPhotoData(
+                photoInput.files[0]
             );
-
-        }
 
 
         const now =
@@ -4688,7 +3778,7 @@ async function createItem(
             {
 
                 name:
-                    itemName,
+                    item,
 
                 cat:
                     cat,
@@ -4703,6 +3793,12 @@ async function createItem(
                 reporter:
                     name,
 
+                reporterEmail:
+                    currentUser.email,
+
+                reporterUid:
+                    currentUser.uid,
+
                 cls:
                     cls ||
                     "N/A",
@@ -4711,294 +3807,181 @@ async function createItem(
                     photo,
 
                 status:
-                    type,
+                    "lost",
 
                 date:
                     new Date()
-                        .toLocaleDateString(
-                            "en-IN",
-                            {
-                                day: "numeric",
-                                month: "short",
-                                year: "numeric"
-                            }
-                        ),
+                    .toLocaleDateString(
+                        "en-US",
+                        {
+                            month:
+                                "short",
+
+                            day:
+                                "numeric"
+                        }
+                    ),
 
                 createdAt:
                     now,
 
                 expiresAt:
                     now +
-                    LOST_FOUND_EXPIRY
+                    (
+                        30 *
+                        24 *
+                        60 *
+                        60 *
+                        1000
+                    )
 
             }
         );
 
 
-        clearForm(prefix);
-
-
-        showToast(
-            type === "lost"
-                ? "Lost item posted"
-                : "Found item posted",
-
-            "Your report is now visible in the Browse section."
-        );
-
-
-        /*
-         * Immediately return to Browse.
-         */
-
-        switchTab("browse");
-
-
-        /*
-         * Put newest report at the top.
-         */
-
         document
-            .getElementById("sortItems")
-            .value = "newest";
-
-
-        renderItems();
-
-
-    } catch(error) {
-
-        console.error(
-            "Posting error:",
-            error
-        );
-
-
-        showToast(
-            "Could not post item",
-            error.message ||
-            "Please try again.",
-            "error"
-        );
-
-    } finally {
-
-        isSubmitting = false;
-
-        button.disabled = false;
-
-        button.innerHTML =
-            originalText;
-
-    }
-
-}
-
-
-/* =========================================================
-   LOST SUBMIT
-   ========================================================= */
-
-window.submitLost =
-function() {
-
-    createItem("lost");
-
-};
-
-
-/* =========================================================
-   FOUND SUBMIT
-   ========================================================= */
-
-window.submitFound =
-function() {
-
-    createItem("found");
-
-};
-
-
-/* =========================================================
-   CLEAR FORM
-   ========================================================= */
-
-function clearForm(prefix) {
-
-    const ids = [
-
-        `${prefix}Name`,
-        `${prefix}Class`,
-        `${prefix}Item`,
-        `${prefix}Location`,
-        `${prefix}Desc`,
-        `${prefix}Photo`
-
-    ];
-
-
-    ids.forEach(id => {
-
-        const element =
-            document.getElementById(id);
-
-
-        if (element) {
-
-            element.value = "";
-
-        }
-
-    });
-
-
-    const preview =
-        document.getElementById(
-            `${prefix}PhotoPreview`
-        );
-
-
-    if (preview) {
-
-        preview.classList.remove(
+        .getElementById(
+            "lostAlert"
+        )
+        .classList.add(
             "show"
         );
 
-    }
 
-
-    const counter =
-        document.getElementById(
-            `${prefix}DescCount`
+        showToast(
+            "Lost item posted successfully!"
         );
 
 
-    if (counter) {
+        resetLostForm();
 
-        counter.textContent = "0";
+
+        switchTab(
+            "browse"
+        );
+
+
+        setTimeout(() => {
+
+            document
+            .getElementById(
+                "lostAlert"
+            )
+            .classList.remove(
+                "show"
+            );
+
+        },3500);
 
     }
 
-}
+    catch(error) {
+
+        console.error(error);
+
+        alert(
+            "Failed to post item.\n\n" +
+            error.message
+        );
+
+    }
+
+    finally {
+
+        button.disabled = false;
+
+    }
+
+};
 
 
 /* =========================================================
-   CLAIM
-   ========================================================= */
+   SUBMIT FOUND
+========================================================= */
 
-window.openClaim =
-function(id) {
-
-    const item =
-        getItemById(id);
-
-
-    if (!item) return;
-
-
-    claimingId = id;
-
-
-    document
-        .getElementById("claimDesc")
-        .textContent =
-            `You are requesting to claim "${item.name}". ` +
-            `Please provide enough information to identify it.`;
-
-
-    document
-        .getElementById("claimModal")
-        .classList.add("open");
-
-
-    setTimeout(() => {
-
-        document
-            .getElementById("claimName")
-            .focus();
-
-    }, 100);
-
-};
-
-
-window.closeClaim =
-function() {
-
-    claimingId = null;
-
-    document
-        .getElementById("claimName")
-        .value = "";
-
-    document
-        .getElementById("claimClass")
-        .value = "";
-
-    document
-        .getElementById("claimReason")
-        .value = "";
-
-    closeModal("claimModal");
-
-};
-
-
-window.confirmClaim =
+window.submitFound =
 async function() {
 
-    if (!claimingId) {
+    if (!currentUser) {
+
+        alert(
+            "Please sign in first."
+        );
+
         return;
+
+    }
+
+
+    const email =
+        (
+            currentUser.email ||
+            ""
+        ).toLowerCase();
+
+
+    if (
+        !email.endsWith(
+            "@" +
+            SCHOOL_EMAIL_DOMAIN
+        )
+    ) {
+
+        alert(
+            "Only school accounts are allowed."
+        );
+
+        return;
+
     }
 
 
     const name =
-        document
-            .getElementById("claimName")
-            .value
-            .trim();
+        currentUser.displayName ||
+        currentUser.email;
 
 
     const cls =
-        document
-            .getElementById("claimClass")
-            .value
-            .trim();
-
-
-    const reason =
-        document
-            .getElementById("claimReason")
-            .value
-            .trim();
-
-
-    if (!name) {
-
-        showToast(
-            "Name required",
-            "Please enter your full name.",
-            "error"
-        );
-
-        return;
-
-    }
+        document.getElementById(
+            "foundClass"
+        ).value.trim();
 
 
     const item =
-        getItemById(claimingId);
+        document.getElementById(
+            "foundItem"
+        ).value.trim();
+
+
+    const cat =
+        document.getElementById(
+            "foundCat"
+        ).value;
+
+
+    const location =
+        document.getElementById(
+            "foundLocation"
+        ).value.trim();
+
+
+    const desc =
+        document.getElementById(
+            "foundDesc"
+        ).value.trim();
+
+
+    const photoInput =
+        document.getElementById(
+            "foundPhoto"
+        );
 
 
     if (!item) {
 
-        showToast(
-            "Item unavailable",
-            "This item may have already changed status.",
-            "error"
+        alert(
+            "Please enter the item name."
         );
-
-        closeClaim();
 
         return;
 
@@ -5006,10 +3989,9 @@ async function() {
 
 
     const button =
-        document
-            .getElementById(
-                "claimSubmitBtn"
-            );
+        document.getElementById(
+            "foundSubmitBtn"
+        );
 
 
     button.disabled = true;
@@ -5017,72 +3999,381 @@ async function() {
 
     try {
 
+        const photo =
+            await getPhotoData(
+                photoInput.files[0]
+            );
+
+
+        const now =
+            Date.now();
+
+
+        await addDoc(
+            itemsCollection,
+            {
+
+                name:
+                    item,
+
+                cat:
+                    cat,
+
+                location:
+                    location ||
+                    "Campus",
+
+                desc:
+                    desc,
+
+                reporter:
+                    name,
+
+                reporterEmail:
+                    currentUser.email,
+
+                reporterUid:
+                    currentUser.uid,
+
+                cls:
+                    cls ||
+                    "N/A",
+
+                photo:
+                    photo,
+
+                status:
+                    "found",
+
+                date:
+                    new Date()
+                    .toLocaleDateString(
+                        "en-US",
+                        {
+                            month:
+                                "short",
+
+                            day:
+                                "numeric"
+                        }
+                    ),
+
+                createdAt:
+                    now,
+
+                expiresAt:
+                    now +
+                    (
+                        30 *
+                        24 *
+                        60 *
+                        60 *
+                        1000
+                    )
+
+            }
+        );
+
+
+        document
+        .getElementById(
+            "foundAlert"
+        )
+        .classList.add(
+            "show"
+        );
+
+
+        showToast(
+            "Found item posted successfully!"
+        );
+
+
+        resetFoundForm();
+
+
+        switchTab(
+            "browse"
+        );
+
+
+        setTimeout(() => {
+
+            document
+            .getElementById(
+                "foundAlert"
+            )
+            .classList.remove(
+                "show"
+            );
+
+        },3500);
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+        alert(
+            "Failed to post item.\n\n" +
+            error.message
+        );
+
+    }
+
+    finally {
+
+        button.disabled = false;
+
+    }
+
+};
+
+
+/* =========================================================
+   RESET LOST
+========================================================= */
+
+function resetLostForm() {
+
+    document.getElementById(
+        "lostClass"
+    ).value = "";
+
+    document.getElementById(
+        "lostItem"
+    ).value = "";
+
+    document.getElementById(
+        "lostLocation"
+    ).value = "";
+
+    document.getElementById(
+        "lostDesc"
+    ).value = "";
+
+    document.getElementById(
+        "lostPhoto"
+    ).value = "";
+
+    document.getElementById(
+        "lostPhotoPreview"
+    ).classList.remove(
+        "show"
+    );
+
+}
+
+
+/* =========================================================
+   RESET FOUND
+========================================================= */
+
+function resetFoundForm() {
+
+    document.getElementById(
+        "foundClass"
+    ).value = "";
+
+    document.getElementById(
+        "foundItem"
+    ).value = "";
+
+    document.getElementById(
+        "foundLocation"
+    ).value = "";
+
+    document.getElementById(
+        "foundDesc"
+    ).value = "";
+
+    document.getElementById(
+        "foundPhoto"
+    ).value = "";
+
+    document.getElementById(
+        "foundPhotoPreview"
+    ).classList.remove(
+        "show"
+    );
+
+}
+
+
+/* =========================================================
+   OPEN CLAIM
+========================================================= */
+
+window.openClaim =
+function(id) {
+
+    if (!currentUser) {
+
+        alert(
+            "Please sign in first."
+        );
+
+        return;
+
+    }
+
+
+    claimingId =
+        id;
+
+
+    const item =
+        items.find(
+            i => i.id === id
+        );
+
+
+    if (!item)
+        return;
+
+
+    document.getElementById(
+        "claimDesc"
+    ).textContent =
+        `Claiming: "${item.name}"`;
+
+
+    document.getElementById(
+        "claimName"
+    ).value =
+        currentUser.displayName ||
+        currentUser.email;
+
+
+    document
+    .getElementById(
+        "claimModal"
+    )
+    .classList.add(
+        "open"
+    );
+
+};
+
+
+/* =========================================================
+   CLOSE CLAIM
+========================================================= */
+
+window.closeClaim =
+function() {
+
+    claimingId =
+        null;
+
+
+    document.getElementById(
+        "claimClass"
+    ).value =
+        "";
+
+
+    document
+    .getElementById(
+        "claimModal"
+    )
+    .classList.remove(
+        "open"
+    );
+
+};
+
+
+/* =========================================================
+   CONFIRM CLAIM
+========================================================= */
+
+window.confirmClaim =
+async function() {
+
+    if (
+        !claimingId ||
+        !currentUser
+    )
+        return;
+
+
+    const cls =
+        document.getElementById(
+            "claimClass"
+        ).value.trim();
+
+
+    try {
+
+        const itemRef =
+            doc(
+                db,
+                "items",
+                claimingId
+            );
+
+
         const now =
             Date.now();
 
 
         await updateDoc(
-
-            doc(
-                db,
-                "items",
-                claimingId
-            ),
-
+            itemRef,
             {
 
                 status:
                     "claimed",
 
                 claimedBy:
-                    name,
+                    currentUser.displayName ||
+                    currentUser.email,
+
+                claimedByEmail:
+                    currentUser.email,
+
+                claimedByUid:
+                    currentUser.uid,
 
                 claimedClass:
                     cls ||
                     "N/A",
-
-                claimReason:
-                    reason ||
-                    "Not provided",
 
                 claimedAt:
                     now,
 
                 expiresAt:
                     now +
-                    CLAIMED_RETURNED_EXPIRY
+                    (
+                        10 *
+                        24 *
+                        60 *
+                        60 *
+                        1000
+                    )
 
             }
-
-        );
-
-
-        showToast(
-            "Item claimed",
-            "The item has been marked as claimed and will be removed after 10 days."
         );
 
 
         closeClaim();
 
 
-    } catch(error) {
-
-        console.error(
-            "Claim error:",
-            error
-        );
-
-
         showToast(
-            "Claim failed",
-            "Could not update the item. Please try again.",
-            "error"
+            "Item marked as claimed!"
         );
 
-    } finally {
+    }
 
-        button.disabled = false;
+    catch(error) {
+
+        console.error(error);
+
+        alert(
+            "Failed to claim item.\n\n" +
+            error.message
+        );
 
     }
 
@@ -5090,158 +4381,151 @@ async function() {
 
 
 /* =========================================================
-   RETURN
-   ========================================================= */
+   OPEN RETURN
+========================================================= */
 
 window.openReturn =
 function(id) {
 
+    if (!currentUser) {
+
+        alert(
+            "Please sign in first."
+        );
+
+        return;
+
+    }
+
+
+    returningId =
+        id;
+
+
     const item =
-        getItemById(id);
+        items.find(
+            i => i.id === id
+        );
 
 
-    if (!item) return;
+    if (!item)
+        return;
 
 
-    returningId = id;
+    document.getElementById(
+        "returnDesc"
+    ).textContent =
+        `Returning: "${item.name}"`;
+
+
+    document.getElementById(
+        "returnName"
+    ).value =
+        currentUser.displayName ||
+        currentUser.email;
 
 
     document
-        .getElementById("returnDesc")
-        .textContent =
-            `Mark "${item.name}" as returned to its owner.`;
-
-
-    document
-        .getElementById("returnModal")
-        .classList.add("open");
-
-
-    setTimeout(() => {
-
-        document
-            .getElementById("returnName")
-            .focus();
-
-    }, 100);
+    .getElementById(
+        "returnModal"
+    )
+    .classList.add(
+        "open"
+    );
 
 };
 
+
+/* =========================================================
+   CLOSE RETURN
+========================================================= */
 
 window.closeReturn =
 function() {
 
-    returningId = null;
+    returningId =
+        null;
+
+
+    document.getElementById(
+        "returnClass"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "returnHow"
+    ).value =
+        "";
+
 
     document
-        .getElementById("returnName")
-        .value = "";
-
-    document
-        .getElementById("returnClass")
-        .value = "";
-
-    document
-        .getElementById("returnHow")
-        .value = "";
-
-    closeModal("returnModal");
+    .getElementById(
+        "returnModal"
+    )
+    .classList.remove(
+        "open"
+    );
 
 };
 
 
+/* =========================================================
+   CONFIRM RETURN
+========================================================= */
+
 window.confirmReturn =
 async function() {
 
-    if (!returningId) {
+    if (
+        !returningId ||
+        !currentUser
+    )
         return;
-    }
-
-
-    const name =
-        document
-            .getElementById("returnName")
-            .value
-            .trim();
 
 
     const cls =
-        document
-            .getElementById("returnClass")
-            .value
-            .trim();
+        document.getElementById(
+            "returnClass"
+        ).value.trim();
 
 
     const how =
-        document
-            .getElementById("returnHow")
-            .value
-            .trim();
-
-
-    if (!name) {
-
-        showToast(
-            "Name required",
-            "Please enter your full name.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    const item =
-        getItemById(returningId);
-
-
-    if (!item) {
-
-        showToast(
-            "Item unavailable",
-            "This item may have already changed status.",
-            "error"
-        );
-
-        closeReturn();
-
-        return;
-
-    }
-
-
-    const button =
-        document
-            .getElementById(
-                "returnSubmitBtn"
-            );
-
-
-    button.disabled = true;
+        document.getElementById(
+            "returnHow"
+        ).value.trim();
 
 
     try {
+
+        const itemRef =
+            doc(
+                db,
+                "items",
+                returningId
+            );
+
 
         const now =
             Date.now();
 
 
         await updateDoc(
-
-            doc(
-                db,
-                "items",
-                returningId
-            ),
-
+            itemRef,
             {
 
                 status:
                     "returned",
 
                 returnedBy:
-                    name,
+                    currentUser.displayName ||
+                    currentUser.email,
+
+                returnedByEmail:
+                    currentUser.email,
+
+                returnedByUid:
+                    currentUser.uid,
 
                 returnedClass:
                     cls ||
@@ -5256,39 +4540,35 @@ async function() {
 
                 expiresAt:
                     now +
-                    CLAIMED_RETURNED_EXPIRY
+                    (
+                        10 *
+                        24 *
+                        60 *
+                        60 *
+                        1000
+                    )
 
             }
-
-        );
-
-
-        showToast(
-            "Marked as returned",
-            "The item has been marked as returned and will be removed after 10 days."
         );
 
 
         closeReturn();
 
 
-    } catch(error) {
-
-        console.error(
-            "Return error:",
-            error
-        );
-
-
         showToast(
-            "Update failed",
-            "Could not mark the item as returned.",
-            "error"
+            "Item marked as returned!"
         );
 
-    } finally {
+    }
 
-        button.disabled = false;
+    catch(error) {
+
+        console.error(error);
+
+        alert(
+            "Failed to mark item as returned.\n\n" +
+            error.message
+        );
 
     }
 
@@ -5296,225 +4576,52 @@ async function() {
 
 
 /* =========================================================
-   MODAL FUNCTIONS
-   ========================================================= */
-
-window.closeModal =
-function(id) {
-
-    document
-        .getElementById(id)
-        .classList.remove("open");
-
-};
-
-
-window.overlayClose =
-function(event, id) {
-
-    if (
-        event.target.id === id
-    ) {
-
-        closeModal(id);
-
-    }
-
-};
-
-
-/* =========================================================
-   SEARCH / FILTER LISTENERS
-   ========================================================= */
+   CLOSE MODALS BY CLICKING OUTSIDE
+========================================================= */
 
 document
-    .getElementById("searchInput")
-    .addEventListener(
-        "input",
-        renderItems
-    );
+.querySelectorAll(
+    ".modal-overlay"
+)
+.forEach(
+    overlay => {
 
+        overlay.addEventListener(
+            "click",
+            event => {
 
-document
-    .getElementById("filterCat")
-    .addEventListener(
-        "change",
-        () => {
+                if (
+                    event.target ===
+                    overlay
+                ) {
 
-            const value =
-                document
-                    .getElementById(
-                        "filterCat"
-                    )
-                    .value;
-
-
-            document
-                .querySelectorAll(
-                    ".quick-filter"
-                )
-                .forEach(button => {
-
-                    button.classList.toggle(
-                        "active",
-                        button.dataset.category ===
-                        value
-                    );
-
-                });
-
-
-            renderItems();
-
-        }
-    );
-
-
-document
-    .getElementById("filterStatus")
-    .addEventListener(
-        "change",
-        renderItems
-    );
-
-
-document
-    .getElementById("sortItems")
-    .addEventListener(
-        "change",
-        renderItems
-    );
-
-
-/* =========================================================
-   CHARACTER COUNTERS
-   ========================================================= */
-
-function setupCounter(
-    textareaId,
-    counterId
-) {
-
-    const textarea =
-        document.getElementById(
-            textareaId
-        );
-
-    const counter =
-        document.getElementById(
-            counterId
-        );
-
-
-    textarea.addEventListener(
-        "input",
-        () => {
-
-            counter.textContent =
-                textarea.value.length;
-
-        }
-    );
-
-}
-
-
-setupCounter(
-    "lostDesc",
-    "lostDescCount"
-);
-
-
-setupCounter(
-    "foundDesc",
-    "foundDescCount"
-);
-
-
-/* =========================================================
-   PHOTO PREVIEWS
-   ========================================================= */
-
-setupPhotoPreview(
-    "lostPhoto",
-    "lostPhotoPreview"
-);
-
-
-setupPhotoPreview(
-    "foundPhoto",
-    "foundPhotoPreview"
-);
-
-
-/* =========================================================
-   ENTER KEY SUPPORT
-   ========================================================= */
-
-document.addEventListener(
-    "keydown",
-    event => {
-
-        if (
-            event.key === "Escape"
-        ) {
-
-            document
-                .querySelectorAll(
-                    ".modal-overlay.open"
-                )
-                .forEach(modal => {
-
-                    modal.classList.remove(
+                    overlay.classList.remove(
                         "open"
                     );
 
-                });
+                    claimingId =
+                        null;
 
-        }
+                    returningId =
+                        null;
 
-    }
-);
+                }
 
-
-/* =========================================================
-   PREVENT DOUBLE SUBMISSION FROM RAPID CLICKS
-   ========================================================= */
-
-window.addEventListener(
-    "beforeunload",
-    () => {
-
-        if (unsubscribeItems) {
-            unsubscribeItems();
-        }
+            }
+        );
 
     }
 );
 
 
 /* =========================================================
-   START APPLICATION
-   ========================================================= */
-
-loadFirestoreItems();
-
-
-/*
- * Update countdowns every second.
- */
+   TIMER
+========================================================= */
 
 setInterval(
     updateTimers,
     1000
 );
-
-
-/*
- * Initial render.
- */
-
-renderItems();
 
 </script>
 
